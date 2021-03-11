@@ -1,0 +1,11 @@
+@import url("./__title/portfolio__title.css");
+@import url("./__link/portfolio__link.css");
+@import url("./__link/_name/portfolio__link_name.css");
+@import url("./__link/_img/portfolio__link_img.css");
+
+.portfolio {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}

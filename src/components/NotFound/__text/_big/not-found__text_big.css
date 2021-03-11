@@ -1,0 +1,26 @@
+.not-found__text_big {
+  margin: 35.14vh auto 0px;
+  font-size: 140px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 169px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #FFFFFF;
+
+  transition: all 0.5s ease-in-out 0s;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .not-found__text_big {
+    margin: 42.17vh auto 0;
+    font-size: 80px;
+    line-height: 97px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .not-found__text_big {
+    margin: 39.84vh auto 0;
+  }
+}

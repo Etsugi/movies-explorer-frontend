@@ -1,0 +1,23 @@
+.form__switch_text {
+  margin: 0 6px 0 0;
+  padding: 0;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #8B8B8B;
+  text-decoration: none;
+  border: none;
+  outline: none;
+
+  transition: all 0.5s ease-in-out 0s;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .form__switch_text {
+  font-size: 12px;
+  line-height: 15px;
+  }
+}

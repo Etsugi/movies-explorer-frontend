@@ -1,0 +1,13 @@
+@import url("./__form/profile__form.css");
+@import url("./__form-title/profile__form-title.css");
+@import url("./__form-button/profile__form-button.css");
+@import url("./__form-button/_signout/profile__form-button_signout.css");
+@import url("./__form-input/profile__form-input.css");
+@import url("./__form-input/_placeholder/profile__form-input_placeholder.css");
+@import url("./__form-error/profile__form-error.css");
+
+.profile {
+  height: calc(100vh - 74px);
+  margin: 0;
+  padding: 0;
+}

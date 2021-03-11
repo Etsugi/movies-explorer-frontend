@@ -1,0 +1,96 @@
+import React from 'react';
+import { NavLink, useRouteMatch } from 'react-router-dom';
+
+import ProfileIcon from "../../images/profile_icon.svg";
+
+function Navigation(props) {
+  const { path } = useRouteMatch();
+  const [isMenuOpen, setMenuOpen] = React.useState(false);
+
+  function MenuOpen() {
+    setMenuOpen(!isMenuOpen);
+  }
+
+  return(
+    <section className="navigation">
+      <div className="navigation__container">
+        <NavLink
+          to="/movies"
+          className="navigation__button"
+          activeClassName="navigation__button_active" 
+          type="button"
+        >
+          Фильмы
+        </NavLink>
+        <NavLink
+          to="/saved-movies"
+          className="navigation__button"
+          activeClassName="navigation__button_active"
+          type="button"
+        >
+          Сохранённые фильмы
+        </NavLink>
+        <NavLink
+          to="/profile"
+          className="navigation__button" 
+          activeClassName="navigation__button_active" 
+          type="button"
+        >
+          <p className="navigation__button_text">Аккаунт</p>
+          <img className="navigation__logo-profile" src={`${ProfileIcon}`} alt="Лого профиля" />
+        </NavLink>
+      </div>
+      <button
+        onClick={MenuOpen} 
+        className={!isMenuOpen ? "navigation__button-menu" : "navigation__button-menu navigation__button-menu_hidden"} 
+        type="button"
+      >
+      </button>
+      <div
+        className={isMenuOpen ? "navigation__container-mobile navigation__container-mobile_open" : 
+        "navigation__container-mobile"}
+      >
+        <button onClick={MenuOpen} className="navigation__button-menu_close" type="button"></button>
+        <NavLink
+          to="/"
+          onClick={MenuOpen}
+          className="navigation__button-mobile" 
+          activeClassName={path==="/" ? "navigation__button_active" : ""} 
+          type="button"
+        >
+          Главная
+        </NavLink>
+        <NavLink
+          to="/movies"
+          onClick={MenuOpen}
+          className="navigation__button-mobile"
+          activeClassName="navigation__button_active" 
+          type="button"
+        >
+          Фильмы
+        </NavLink>
+        <NavLink
+          to="/saved-movies"
+          onClick={MenuOpen}
+          className="navigation__button-mobile"
+          activeClassName="navigation__button_active" 
+          type="button"
+        >
+          Сохранённые фильмы
+        </NavLink>
+        <NavLink
+          to="/profile"
+          onClick={MenuOpen}
+          className="navigation__button-mobile"
+          activeClassName="navigation__button_active"
+          type="button"
+        >
+          <p className="navigation__button_text">Аккаунт</p>
+          <img className="navigation__logo-profile" src={`${ProfileIcon}`} alt="Лого профиля" />
+        </NavLink>
+      </div>
+    </section>
+  );
+}
+
+export default Navigation;

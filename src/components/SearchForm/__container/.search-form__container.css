@@ -1,0 +1,25 @@
+.search-form__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 69px;
+  margin: 0 70px 51px;
+  padding: 0;
+  border: 1.5px solid rgba(170, 170, 170, .80);
+  border-radius: 8px;
+
+  transition: all 0.5s ease-in-out 0s;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .search-form__container {
+    margin: 0 14px 31px;
+    height: 53px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .search-form__container {
+    margin: 0 30px 27px;
+  }
+}

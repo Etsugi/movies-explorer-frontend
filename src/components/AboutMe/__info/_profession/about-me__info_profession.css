@@ -1,0 +1,29 @@
+.about-me__info_profession {
+  margin: 18px 0 0;
+  padding: 0;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: #FFFFFF;
+  
+  transition: all 0.5s ease-in-out 0s;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .about-me__info_profession {
+    margin: 20px 0 0;
+    font-size: 11px;
+    line-height: 16px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .about-me__info_profession {
+    margin: 16px 0 0;
+    font-size: 12px;
+    line-height: 18px;
+  }
+}

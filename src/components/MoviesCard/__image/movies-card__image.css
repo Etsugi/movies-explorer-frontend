@@ -1,0 +1,19 @@
+.movies-card__image {
+  height: 203px;
+  width: 100%;
+  background-image: url(../../../images/test-picture.jpg);
+
+  transition: all 0.5s ease-in-out 0s;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .movies-card__image {
+    height: 168px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .movies-card__image {
+    height: 190px;
+  }
+}

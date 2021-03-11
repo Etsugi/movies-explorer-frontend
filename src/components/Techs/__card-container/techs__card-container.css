@@ -1,0 +1,27 @@
+.techs__card-container {
+  width: 100%;
+  margin: 100px auto 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat( auto-fit, minmax(84px, 90px) );
+  justify-content: center;
+  gap: 10px;
+  list-style-type: none;
+  
+  transition: all 0.5s ease-in-out 0s;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .techs__card-container {
+    max-width: 63%;
+    margin: 50px auto 0;
+    grid-template-columns: repeat( auto-fit, minmax(84px, 84px) );
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .techs__card-container {
+    margin: 83px auto 0;
+    grid-template-columns: repeat( auto-fit, minmax(84px, 84px) );
+  }
+}

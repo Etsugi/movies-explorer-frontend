@@ -1,0 +1,49 @@
+.filter-checkbox__input:not(checked) {
+  position: absolute;
+  opacity: 0;
+}
+
+.filter-checkbox__input:not(checked) + label {
+  position: relative; /* будем позиционировать псевдочекбокс относительно label */
+  padding: 0 0 0 50px; /* оставляем слева от label место под псевдочекбокс */
+}
+
+/* Оформление первой части чекбокса в выключенном состоянии (фон). */
+.filter-checkbox__input:not(checked) + label:before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: 34px;
+  height: 14px;
+  border-radius: 20px;
+  background: #EBEBEB;
+  box-shadow: inset 0 2px 3px rgba(0, 0, 0, .2);
+}
+
+/* Оформление второй части чекбокса в выключенном состоянии (переключатель). */
+.filter-checkbox__input:not(checked) + label:after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50px;
+  background: #F5F5F5;
+  transition: all .2s; /* анимация, чтобы чекбокс переключался плавно */
+}
+
+/* Меняем фон чекбокса, когда он включен. */
+.filter-checkbox__input:checked + label:before {
+  background: #2BE080; 
+}
+
+/* Сдвигаем переключатель чекбокса, когда он включен. */
+.filter-checkbox__input:checked + label:after {
+  left: 22px;
+}
+
+.filter-checkbox__input + label:hover {
+  cursor: pointer;
+}

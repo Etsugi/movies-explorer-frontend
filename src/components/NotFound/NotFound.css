@@ -1,0 +1,13 @@
+@import url("./__text/_big/not-found__text_big.css");
+@import url("./__text/_small/not-found__text_small.css");
+@import url("./__button/not-found__button.css");
+
+.not-found {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #202020;
+  display: flex;
+  flex-direction: column;
+}

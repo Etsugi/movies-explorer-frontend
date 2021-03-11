@@ -1,0 +1,19 @@
+@import url("./__container/navigation__container.css");
+@import url("./__container-mobile/navigation__container-mobile.css");
+@import url("./__container-mobile/_open/navigation__container-mobile_open.css");
+@import url("./__button/navigation__button.css");
+@import url("./__button_active/navigation__button_active.css");
+@import url("./__button/_text/navigation__button_text.css");
+@import url("./__button-mobile/navigation__button-mobile.css");
+@import url("./__button-menu/navigation__button-menu.css");
+@import url("./__button-menu/_hidden/navigation__button-menu_hidden.css");
+@import url("./__button-menu/_close/navigation__button-menu_close.css");
+@import url("./__logo-profile/header__logo-profile.css");
+
+.navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 74px;
+  overflow: hidden;
+}

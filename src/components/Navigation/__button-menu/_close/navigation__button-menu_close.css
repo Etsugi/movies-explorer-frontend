@@ -1,0 +1,12 @@
+.navigation__button-menu_close {
+  display: inherit;
+  margin: 13px 13px 0 auto;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  background-color: inherit;
+  background-image: url("../../../../images/navigation-menu-close.svg");
+  border: none;
+  outline: none;
+  text-decoration: none;
+}

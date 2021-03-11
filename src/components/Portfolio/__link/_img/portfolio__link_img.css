@@ -1,0 +1,25 @@
+.portfolio__link_img {
+  height: 60px;
+  width: 29px;
+  margin: 0;
+  padding: 0;
+  background-image: url(../../../../images/portfolio_link.svg);
+  background-size: auto auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: opacity 0.1s ease-in-out 0s !important;
+  
+  transition: all 0.5s ease-in-out 0s;
+}
+
+.portfolio__link_img:hover {
+  opacity: .70;
+  cursor: pointer;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .portfolio__link_img {
+    width: 18px;
+    height: 28px;
+  }
+}

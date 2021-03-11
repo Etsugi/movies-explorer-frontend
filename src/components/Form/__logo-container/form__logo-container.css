@@ -1,0 +1,21 @@
+.form__logo-container {
+  margin: 70px 0 40px;
+  padding: 0;
+  text-decoration: none;
+  border: none;
+  outline: none;
+
+  transition: all 0.5s ease-in-out 0s;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .form__logo-container {
+    margin: 56px auto 50px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .form__logo-container {
+    margin: 22.65vh 0 40px 0;
+  }
+}

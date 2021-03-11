@@ -1,0 +1,6 @@
+@import url('./__container/movies-card-list__container.css');
+@import url('./__button/movies-card-list__button.css');
+
+.movies-card-list {
+  width: 100%;
+}

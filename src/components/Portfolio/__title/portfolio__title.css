@@ -1,0 +1,26 @@
+.portfolio__title {
+  margin: 0 0 50px 70px;
+  padding: 0;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: #8B8B8B;
+  
+  transition: all 0.5s ease-in-out 0s;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .portfolio__title {
+    font-size: 14px;
+    margin: 0 0 40px 14px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .portfolio__title {
+    margin: 0 0 50px 50px;
+  }
+}

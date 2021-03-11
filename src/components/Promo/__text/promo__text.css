@@ -1,0 +1,32 @@
+.promo__text {
+  max-width: 730px;
+  margin: 160px auto 151px;
+  padding: 0;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 58px;
+  letter-spacing: -0.04em;
+  text-align: center;
+  color: #FFFFFF;
+
+  transition: all 0.5s ease-in-out 0s;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .promo__text {
+    max-width: 292px;
+    margin: 220px auto 212px;
+    font-size: 29px;
+    line-height: 37px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .promo__text {
+    max-width: 680px;
+    margin: 350px auto 314px;
+    font-size: 40px;
+    line-height: 52px;
+  }
+}

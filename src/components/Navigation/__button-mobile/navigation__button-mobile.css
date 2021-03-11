@@ -1,0 +1,44 @@
+.navigation__button-mobile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 28px auto 0;
+  padding: 0;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: opacity 0.1s ease-in-out 0s;
+
+  transition: all 0.5s ease-in-out 0s;
+}
+
+.navigation__button-mobile:first-of-type {
+  margin: 105px auto 0;
+}
+
+.navigation__button-mobile:last-of-type {
+  margin: auto auto 92px;
+}
+
+.navigation__button-mobile:hover {
+  opacity: .70;
+  cursor: pointer;
+}
+
+@media all and (max-width: 320px) {
+  .navigation__button-mobile {
+    margin: 24px auto 0;
+  }
+  .navigation__button-mobile:first-of-type {
+    margin: 100px auto 0;
+  }
+  
+  .navigation__button-mobile:last-of-type {
+    margin: auto auto 48px;
+  }
+}

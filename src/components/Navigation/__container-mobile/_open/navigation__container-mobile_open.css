@@ -1,0 +1,9 @@
+.navigation__container-mobile_open {
+  right: 0 !important;
+}
+
+@media all and (max-width: 320px) {
+  .navigation__container-mobile_open {
+    width: 100vw !important;
+  }
+}
