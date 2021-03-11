@@ -28,7 +28,7 @@ function MoviesCard(props) {
         </div>
         <button onClick={handleSaveClick} type="button" className={saveButtonClassName}></button>
       </div>
-      <img className="movies-card__image" alt={props.card.name} src={props.card.link} />
+      <img className="movies-card__image" alt={props.card.title} src={props.card.link} />
     </article>
   );
 }

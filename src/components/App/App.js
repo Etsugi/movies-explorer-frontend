@@ -68,7 +68,7 @@ function App() {
           />
         </Route>
 
-        <Route exact path="/">
+        <Route exact path="/" redirect="/main">
           <Header 
             login={isLogin}
           />

@@ -1,5 +1,6 @@
 @import url("./__container/.search-form__container.css");
 @import url("./__input/.search-form__input.css");
+@import url("./__error/.search-form__error.css");
 @import url("./__button/.search-form__button.css");
 
 .search-form {

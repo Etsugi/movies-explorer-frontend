@@ -10,7 +10,7 @@ function Header(props) {
 
   return(
     <header className="header">
-      <Link to="/" className="header__logo-container" type="button">
+      <Link to="/" className="header__logo-container">
         <img className="header__logo" src={`${Logo}`} alt="Лого" />
       </Link>
       
@@ -18,8 +18,8 @@ function Header(props) {
         <Navigation />
       :
         <div className="header__container">
-          <Link to="/signup" className="header__button" type="button">Регистрация</Link>
-          <Link to="/signin" className="header__button" type="button">Войти</Link>
+          <Link to="/signup" className="header__button">Регистрация</Link>
+          <Link to="/signin" className="header__button">Войти</Link>
         </div>
       }
     </header>

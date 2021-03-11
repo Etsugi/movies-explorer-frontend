@@ -18,7 +18,6 @@ function Navigation(props) {
           to="/movies"
           className="navigation__button"
           activeClassName="navigation__button_active" 
-          type="button"
         >
           Фильмы
         </NavLink>
@@ -26,7 +25,6 @@ function Navigation(props) {
           to="/saved-movies"
           className="navigation__button"
           activeClassName="navigation__button_active"
-          type="button"
         >
           Сохранённые фильмы
         </NavLink>
@@ -34,7 +32,6 @@ function Navigation(props) {
           to="/profile"
           className="navigation__button" 
           activeClassName="navigation__button_active" 
-          type="button"
         >
           <p className="navigation__button_text">Аккаунт</p>
           <img className="navigation__logo-profile" src={`${ProfileIcon}`} alt="Лого профиля" />
@@ -43,7 +40,6 @@ function Navigation(props) {
       <button
         onClick={MenuOpen} 
         className={!isMenuOpen ? "navigation__button-menu" : "navigation__button-menu navigation__button-menu_hidden"} 
-        type="button"
       >
       </button>
       <div
@@ -56,7 +52,6 @@ function Navigation(props) {
           onClick={MenuOpen}
           className="navigation__button-mobile" 
           activeClassName={path==="/" ? "navigation__button_active" : ""} 
-          type="button"
         >
           Главная
         </NavLink>
@@ -65,7 +60,6 @@ function Navigation(props) {
           onClick={MenuOpen}
           className="navigation__button-mobile"
           activeClassName="navigation__button_active" 
-          type="button"
         >
           Фильмы
         </NavLink>
@@ -74,7 +68,6 @@ function Navigation(props) {
           onClick={MenuOpen}
           className="navigation__button-mobile"
           activeClassName="navigation__button_active" 
-          type="button"
         >
           Сохранённые фильмы
         </NavLink>
@@ -83,7 +76,6 @@ function Navigation(props) {
           onClick={MenuOpen}
           className="navigation__button-mobile"
           activeClassName="navigation__button_active"
-          type="button"
         >
           <p className="navigation__button_text">Аккаунт</p>
           <img className="navigation__logo-profile" src={`${ProfileIcon}`} alt="Лого профиля" />
