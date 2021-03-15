@@ -1,0 +1,22 @@
+.navigation__container-mobile {
+  position: fixed;
+  top: 0;
+  right: -67.7vw;
+  display: inherit;
+  overflow: hidden;
+  flex-direction: column;
+  width: 67.7vw;
+  height: 100vh;
+  margin: 0 0 0 auto;
+  padding: 0;
+  background-color: #202020;
+  z-index: 1;
+
+  transition: all 0.1s ease-in-out 0s;
+}
+
+@media all and (min-width: 769px) {
+  .navigation__container-mobile {
+    display: none !important;
+  }
+}

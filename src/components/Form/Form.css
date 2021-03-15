@@ -1,0 +1,31 @@
+@import url("./__logo-container/form__logo-container.css");
+@import url("./__logo/form__logo.css");
+@import url("./__title/form__title.css");
+@import url("./__input/form__input.css");
+@import url("./__input/_error/form__input_error.css");
+@import url("./__error/form__error.css");
+@import url("./__input/_placeholder/form__input_placeholder.css");
+@import url("./__button/form__button.css");
+@import url("./__button/_disabled/form__button_disabled.css");
+@import url("./__switch/form__switch.css");
+@import url("./__switch/_text/form__switch_text.css");
+@import url("./__switch/_button/form__switch_button.css");
+
+
+.form {
+  max-width: 396px;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 0;
+
+  transition: all 0.5s ease-in-out 0s;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .form {
+    width: 81.25%;
+  }
+}

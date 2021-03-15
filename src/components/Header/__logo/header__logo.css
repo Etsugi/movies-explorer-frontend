@@ -1,0 +1,26 @@
+.header__logo {
+  margin: 0;
+  padding: 0;
+  width: 38px;
+  height: 38px;
+  animation-name: rotation;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  transition: opacity 0.3s ease-in-out 0s;
+  z-index: 1;
+}
+
+.header__logo:hover {
+  opacity: .70;
+  cursor: pointer;
+}
+
+@keyframes rotation {
+  0% {
+      transform:rotate(0deg);
+  }
+  100% {
+      transform:rotate(360deg);
+  }
+}

@@ -1,0 +1,21 @@
+.form__switch {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto 70px;
+  padding: 0;
+  text-decoration: none;
+
+  transition: all 0.5s ease-in-out 0s;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .form__switch {
+    margin: 0 auto 30px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .form__switch {
+    margin: 0 auto 22.65%;
+  }
+}

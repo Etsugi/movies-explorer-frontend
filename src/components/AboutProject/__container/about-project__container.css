@@ -1,0 +1,24 @@
+.about-project__container {
+  display: grid;
+  grid-template-rows: auto; /* строки */
+  grid-template-columns: 1fr 1fr; /* 2 столбца */
+  margin: 0 70px 0 70px;
+  padding: 0;
+  border-top: 1px solid #DADADA;
+
+  transition: all 0.5s ease-in-out 0s;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .about-project__container {
+    margin: 0 18px 0 18px;
+    grid-template-rows: auto; /* строки */
+    grid-template-columns: 1fr; /* 1 столбец */
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .about-project__container {
+    margin: 0 50px 0 50px;
+  }
+}

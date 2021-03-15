@@ -1,0 +1,9 @@
+.profile__form {
+  max-width: 410px !important;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .profile__form {
+    width: 81.25% !important;
+  }
+}

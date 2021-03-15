@@ -1,0 +1,23 @@
+.about-me__photo {
+  margin: 66px 0 0;
+  max-width: 270px;
+  max-height: 327px;
+  border-radius: 10px;
+  
+  transition: all 0.5s ease-in-out 0s;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .about-me__photo {
+    margin: 60px auto 0;
+    max-width: 292px;
+    max-height: 352px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .about-me__photo {
+    max-width: 255px;
+    max-height: 307px;
+  }
+}

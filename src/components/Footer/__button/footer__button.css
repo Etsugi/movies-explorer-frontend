@@ -1,0 +1,36 @@
+.footer__button {
+  margin: 0 20px 0 0;
+  padding: 0;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0px;
+  text-align: right;
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: opacity 0.1s ease-in-out 0s !important;
+
+  transition: all 0.5s ease-in-out 0s;
+}
+
+.footer__button:last-of-type {
+  margin: 0;
+}
+
+.footer__button:hover {
+  opacity: .70;
+  cursor: pointer;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .footer__button {
+    margin: 0 0 12px 0;
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .footer__button:last-of-type {
+    margin: 0 0 30px 0;
+  }
+}

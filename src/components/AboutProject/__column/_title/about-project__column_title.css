@@ -1,0 +1,28 @@
+.about-project__column_title {
+  max-width: 500px;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: -0.04em;
+  text-align: left;
+  color: #FFFFFF;
+
+  transition: all 0.5s ease-in-out 0s;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .about-project__column_title {
+    max-width: 284px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .about-project__column_title {
+    max-width: 319px;
+  }
+}

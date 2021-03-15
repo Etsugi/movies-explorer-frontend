@@ -1,0 +1,11 @@
+@import url("./__logo-container/header__logo-container.css");
+@import url("./__logo/header__logo.css");
+@import url("./__container/header__container.css");
+@import url("./__button/header__button.css");
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 74px;
+}

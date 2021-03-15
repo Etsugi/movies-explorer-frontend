@@ -1,0 +1,23 @@
+.about-me__container {
+  margin: 0 70px 100px;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-top: 1px solid #DADADA;
+  
+  transition: all 0.5s ease-in-out 0s;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .about-me__container {
+    flex-direction: column-reverse;
+    margin: 0 14px 69px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .about-me__container {
+    margin: 0 50px 90px;
+  }
+}
