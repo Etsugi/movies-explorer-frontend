@@ -1,4 +1,4 @@
-const shortFilmDuration = 40;
+const ShortFilmDuration = 40;
 
 function countGridElement() {
   let count = 1;
@@ -22,4 +22,4 @@ window.addEventListener('resize', countGridElement);
 const rowCount = count * 4 === 4 ? 5 : count * 4;
 
 
-export { count, rowCount, shortFilmDuration };
+export { count, rowCount, ShortFilmDuration };

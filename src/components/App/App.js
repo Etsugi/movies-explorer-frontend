@@ -35,7 +35,7 @@ function App() {
   const history = useHistory();
 
   const [token, setToken] = React.useState('');
-  const [isPreloader, setPreloader] = React.useState(false);
+  const [isPreloader, setPreloader] = React.useState(true);
   const [currentUser, setCurrentUser] = React.useState('');
   const [movies, setMovies] = React.useState([]);
   const [savedMovies, setSavedMovies] = React.useState([]);
@@ -50,6 +50,7 @@ function App() {
   React.useEffect(() => {
     if(loggedIn) {
       setMovies(JSON.parse(localStorage.getItem('movies')));
+      setPreloader(false);
     }
   }, [initMovie]);
   React.useEffect(() => {
@@ -198,11 +199,6 @@ function App() {
     })
   }
 
-  function clickSearch(data) {
-    setMovies(JSON.parse(localStorage.getItem('movies')).filter(movie => 
-      movie.nameRU.toUpperCase().indexOf(data.toUpperCase()) > -1));
-  }
-
   const arrayRoutesExcludeHeader = [
     "/signin",
     "/signup",
@@ -226,8 +222,7 @@ function App() {
         /> 
       }
 
-      {isPreloader ? 
-        <Preloader /> : 
+      {isPreloader ? <Preloader /> : 
 
         <Switch>
 
@@ -272,7 +267,6 @@ function App() {
             component={Movies}
             movies={movies}
             savedMovies={savedMovies}
-            clickSearch={clickSearch}
             clickSaveMovie={clickSaveMovie}
             clickUnsaveMovie={clickUnsaveMovie}
           />
@@ -285,7 +279,6 @@ function App() {
             component={SavedMovies}
             movies={movies}
             savedMovies={savedMovies}
-            clickSearch={clickSearch}
             clickSaveMovie={clickSaveMovie}
             clickUnsaveMovie={clickUnsaveMovie}
           />
@@ -300,7 +293,7 @@ function App() {
 
         </Switch>
 
-        }
+      }
 
         { useRouteMatch(arrayRoutesExcludeFooter) ? null : 
           <Footer />

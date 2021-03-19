@@ -2,16 +2,11 @@ import React from 'react';
 
 import noImage from '../../images/no-image.jpg';
 
-function MoviesCard(props) {
-  const [isSaved, setIsSaved] = React.useState(false);
-
-  React.useEffect(() => {
-    setIsSaved(props.savedMovies.some((item) => item.movieId === String(props.movie.id)));
-  }, [props.savedMovies]);
+function SavedMoviesCard(props) {
 
   function image() {
     if (props.movie.image) {
-      return `https://api.nomoreparties.co${props.movie.image.url}`;
+      return props.movie.image;
     }
     else {
       return noImage;
@@ -25,13 +20,8 @@ function MoviesCard(props) {
     return hours + 'ч ' + minutes + 'м';
 };
 
-  function handleSaveClick() {
-    if (isSaved) {
-      props.clickUnsaveMovie(props.movie.id);
-    }
-    else {
-      props.clickSaveMovie(props.movie);
-    }
+  function handleUnSaveClick() {
+    props.clickUnsaveMovie(props.movie.movieId);
   }
 
   return (
@@ -41,18 +31,18 @@ function MoviesCard(props) {
           <p className="movies-card__title">{props.movie.nameRU}</p>
           <p className="movies-card__duration">{getTimeFromMinutes()}</p>
         </div>
-        <button 
-          onClick={handleSaveClick}
+        <button
+          onClick={handleUnSaveClick}
           type="button"
-          className={`movies-card__save-button ${isSaved ? 'movies-card__save-button_active' : ''}`}
+          className='movies-card__save-button movies-card__save-button_delete'
         >
         </button>
       </div>
-      <a href={props.movie.trailerLink} className="movies-card__link" target="_blank">
+      <a href={props.movie.trailer} className="movies-card__link" target="_blank">
         <img className="movies-card__image" alt={props.movie.nameRU} src={image()} />
       </a>
     </article>
   );
 }
 
-export default MoviesCard;
+export default SavedMoviesCard;

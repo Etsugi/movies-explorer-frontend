@@ -2,16 +2,16 @@ import React from 'react';
 
 import MoviesCard from '../MoviesCard/MoviesCard';
 
-import { count, rowCount, shortFilmDuration } from '../../constants/constants';
+import { count, rowCount, ShortFilmDuration } from '../../constants/constants';
 
 function MoviesCardList(props) {
-  const [movies, setMove] = React.useState([]);
+  const [movies, setMovies] = React.useState([]);
   const [currentMovieCount, setCurrentMovieCount] = React.useState(rowCount);
   React.useEffect(() => {
     if(!props.clickCheckBox) {
-      setMove(props.movies.filter(movie => movie.duration > shortFilmDuration));
+      setMovies(props.movies.filter(movie => movie.duration > ShortFilmDuration));
     } else {
-      return setMove(props.movies);
+      return setMovies(props.movies);
     }
   }, [props.clickCheckBox, props.movies]);
 

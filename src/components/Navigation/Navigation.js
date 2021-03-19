@@ -3,7 +3,10 @@ import { NavLink } from 'react-router-dom';
 
 import ProfileIcon from "../../images/profile_icon.svg";
 
+import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
+
 function Navigation(props) {
+  const user = React.useContext(CurrentUserContext);
   const [isMenuOpen, setMenuOpen] = React.useState(false);
 
   function MenuOpen() {
@@ -32,7 +35,7 @@ function Navigation(props) {
           className="navigation__button" 
           activeClassName="navigation__button_active" 
         >
-          <p className="navigation__button_text">Аккаунт</p>
+          <p className="navigation__button_text">{user.name}</p>
           <img className="navigation__logo-profile" src={`${ProfileIcon}`} alt="Лого профиля" />
         </NavLink>
       </div>
@@ -77,7 +80,7 @@ function Navigation(props) {
           className="navigation__button-mobile"
           activeClassName="navigation__button_active"
         >
-          <p className="navigation__button_text">Аккаунт</p>
+          <p className="navigation__button_text">{user.name}</p>
           <img className="navigation__logo-profile" src={`${ProfileIcon}`} alt="Лого профиля" />
         </NavLink>
       </div>

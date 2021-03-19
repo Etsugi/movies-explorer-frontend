@@ -116,7 +116,7 @@ async function saveMovie(data, token) {
 }
 
 async function unSaveMovie(data, token) {
-  return fetch(`${BASE_URL}/movies/${data.id}`, {
+  return fetch(`${BASE_URL}/movies/${data}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',

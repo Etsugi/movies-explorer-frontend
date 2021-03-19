@@ -1,11 +1,17 @@
 import React from 'react';
-import { Formik, Field, useField, Form } from "formik";
+import { Formik, Field, Form } from "formik";
 import ProfileFormSchema from "../FormValidator/ProfileForm.js";
+
+import PreloaderFull from "../PreloaderFull/PreloaderFull.js";
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function Profile(props) {
   const user = React.useContext(CurrentUserContext);
+  const [isPreloader, setPreloader] = React.useState(true);
+  React.useEffect(() => {
+    setPreloader(false);;
+  }, [user]);
 
   const [submitMessage, setSubmitMessage] = React.useState('');
   React.useEffect(() => {
@@ -13,20 +19,24 @@ function Profile(props) {
   }, [props.submitMessage]);
 
   function handleSubmit(values) {
+    setPreloader(true);
     props.onEditUser({
       name: values.name,
       email: values.email
     });
   }
+
   function handleLogout() {
     props.onLogout();
   }
+
   function handleChange() {
     props.setSubmitMessage('');
   };
 
   return (
     <div className="profile">
+      
       <Formik
         enableReinitialize={true}
         initialValues={{
@@ -39,6 +49,7 @@ function Profile(props) {
         }}
           render={({ errors }) => (
           <Form className="form profile__form" noValidate>
+            {isPreloader ? <PreloaderFull /> : ''}
             <h2 className="profile__form-title">Привет, {user.name}!</h2>
             <h3 className="form__input_placeholder profile__form-input_placeholder">Имя</h3>
             <Field 
@@ -60,7 +71,7 @@ function Profile(props) {
                 'form__input profile__form-input'}
             />
             <span className='form__error profile__form-error'>{errors.email}</span>
-            <span className="form__error form__submit-message">{submitMessage}</span>
+            <span className="form__error form__submit-message">Сабж ответа</span>
             <button className="profile__form-button" type="submit">Редактировать</button>
             <button onClick={handleLogout} className="profile__form-button profile__form-button_signout" type="button">
               Выйти из аккаунта

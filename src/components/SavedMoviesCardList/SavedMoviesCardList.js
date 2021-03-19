@@ -1,19 +1,19 @@
 import React from 'react';
 
-import MoviesCard from '../MoviesCard/MoviesCard';
+import SavedMoviesCard from '../SavedMoviesCard/SavedMoviesCard';
 
-import { count, rowCount, shortFilmDuration } from '../../constants/constants';
+import { count, rowCount, ShortFilmDuration } from '../../constants/constants';
 
 function MoviesCardList(props) {
-  const [move, setMove] = React.useState([]);
+  const [movies, setMovies] = React.useState([]);
   const [currentMovieCount, setCurrentMovieCount] = React.useState(rowCount);
   React.useEffect(() => {
     if(!props.clickCheckBox) {
-      setMove(props.movies.filter(movie => movie.duration > shortFilmDuration));
+      setMovies(props.savedMovies.filter(movie => movie.duration > ShortFilmDuration));
     } else {
-      return setMove(props.movies);
+      return setMovies(props.savedMovies);
     }
-  }, [props.clickCheckBox, props.movies]);
+  }, [props.clickCheckBox, props.savedMovies]);
 
   function addMovie() {
     setCurrentMovieCount(currentMovieCount + (count === 1 ? 2 : count));
@@ -23,19 +23,11 @@ function MoviesCardList(props) {
     addMovie();
   }
 
-  const movie = {
-    nameRu: props.movies.nameRu,
-    duration: props.movies.duration,
-    image: props.movies.nameRu.image.url || 'нет изображения',
-    trailerLink: props.movies.trailerLink,
-    id: props.movies.id
-  }
-
   return(
     <section className="movies-card-list">
       <div className="movies-card-list__container">
-        {props.savedMovies.slice(0, currentMovieCount).map(movie => 
-          <MoviesCard 
+        {movies.slice(0, currentMovieCount).map(movie => 
+          <SavedMoviesCard 
             movie={movie}
             savedMovies={props.savedMovies}
             clickSaveMovie={props.clickSaveMovie}
