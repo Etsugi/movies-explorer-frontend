@@ -2,25 +2,27 @@ import React from 'react';
 
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import Preloader from '../Preloader/Preloader';
 
 function Movies(props) {
-  const [isPreloader, setPreloader] = React.useState(false);
+  const [checkbox, setCheckBox] = React.useState(false);
 
-  function handlePreloader() {
-    setPreloader(!isPreloader);
+  function clickCheckBox() {
+    setCheckBox(!checkbox);
   }
 
   return(
     <section className="movies">
-      <SearchForm />
-      <MoviesCardList 
-        cards={props.cards}
-        preloader={handlePreloader}
+      <SearchForm 
+        clickSearch={props.clickSearch}
+        clickCheckBox={clickCheckBox}
       />
-      {isPreloader ? 
-        <Preloader /> : ''
-      }
+      <MoviesCardList 
+        movies={props.movies}
+        savedMovies={props.savedMovies}
+        clickUnsaveMovie={props.clickUnsaveMovie}
+        clickSaveMovie={props.clickSaveMovie}
+        clickCheckBox={checkbox}
+      />
     </section>
   );
 }

@@ -7,5 +7,8 @@
   line-height: 18px;
   letter-spacing: 0px;
   text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  overflow-wrap: break-word;
   color: #FFFFFF;
 }

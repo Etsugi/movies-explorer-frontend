@@ -1,10 +1,9 @@
 import React from 'react';
-import { NavLink, useRouteMatch } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import ProfileIcon from "../../images/profile_icon.svg";
 
 function Navigation(props) {
-  const { path } = useRouteMatch();
   const [isMenuOpen, setMenuOpen] = React.useState(false);
 
   function MenuOpen() {
@@ -48,10 +47,11 @@ function Navigation(props) {
       >
         <button onClick={MenuOpen} className="navigation__button-menu_close" type="button"></button>
         <NavLink
+          exact
           to="/"
           onClick={MenuOpen}
           className="navigation__button-mobile" 
-          activeClassName={path==="/" ? "navigation__button_active" : ""} 
+          activeClassName={"navigation__button_active"} 
         >
           Главная
         </NavLink>

@@ -1,6 +1,8 @@
 .movies-card__text-container {
+  max-width: 79.41176470588235%;
   display: flex;
   flex-direction: column;
   margin: 14px 0 14px 14px;
   padding: 0;
+  box-sizing: border-box;
 }

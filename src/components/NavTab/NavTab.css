@@ -1,6 +1,8 @@
 @import url("./__button/navtab__button.css");
 
 .navtab {
+  display: flex;
+  flex-direction: row;
   margin: 0 auto 30px;
   padding: 0;
   

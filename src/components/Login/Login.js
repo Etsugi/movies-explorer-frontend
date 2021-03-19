@@ -6,14 +6,21 @@ import LoginFormSchema from "../FormValidator/LoginForm.js";
 import Logo from "../../images/logo.svg";
 
 function Login(props) {
+  const [submitMessage, setSubmitMessage] = React.useState('');
+  React.useEffect(() => {
+    setSubmitMessage(props.submitMessage);
+  }, [props.submitMessage]);
 
   function handleSubmit(values) {
     props.onLogin({
-      name: values.name,
       email: values.email,
       password: values.password
     });
-  }
+  };
+
+  function handleChange() {
+    props.setSubmitMessage('');
+  };
 
   return (
     <div className="login">
@@ -34,13 +41,24 @@ function Login(props) {
             </Link>
             <h2 className="form__title">Рады видеть!</h2>
             <h3 className="form__input_placeholder">E-mail</h3>
-            <Field type="email" name="email" placeholder="" className={errors.email ? 
-              'form__input form__input_error' : 'form__input'}/>
-              <span className='form__error'>{errors.email}</span>
+            <Field
+              type="email"
+              name="email"
+              placeholder=""
+              onInput={handleChange}
+              className={errors.email ? 'form__input form__input_error' : 'form__input'}
+            />
+            <span className='form__error'>{errors.email}</span>
             <h3 className="form__input_placeholder">Пароль</h3>
-            <Field type="password" name="password" placeholder="" className={errors.password ? 
-              'form__input form__input_error' : 'form__input'}/>
-              <span className='form__error'>{errors.password}</span>
+            <Field
+              type="password"
+              name="password"
+              placeholder=""
+              onInput={handleChange}
+              className={errors.password ? 'form__input form__input_error' : 'form__input'}
+            />
+            <span className='form__error'>{errors.password}</span>
+            <span className="form__error form__submit-message">{submitMessage}</span>
             <button className={(errors.password || errors.email) ? 'form__button form__button_disabled' : 
               'form__button'} type="submit">Войти</button>
             <div className="form__switch">

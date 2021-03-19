@@ -1,0 +1,9 @@
+.movies-card__link {
+  margin: 0;
+  padding: 0;
+  transition: opacity 0.1s ease-in-out 0s;
+}
+
+.movies-card__link:hover {
+  opacity: 0.7;
+}

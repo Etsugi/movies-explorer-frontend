@@ -7,9 +7,7 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 function SearchForm(props) {
 
   function handleSubmit(values) {
-    props.onRegister({
-      request: values.request
-    });
+    props.clickSearch(values.request);
   }
 
   return(
@@ -38,7 +36,9 @@ function SearchForm(props) {
                 Поиск
               </button>
             </div>
-            <FilterCheckbox />
+            <FilterCheckbox 
+              clickCheckBox={props.clickCheckBox}
+            />
           </Form>
         )}
       />

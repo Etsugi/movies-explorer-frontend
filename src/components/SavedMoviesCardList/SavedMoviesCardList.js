@@ -5,7 +5,7 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 import { count, rowCount, shortFilmDuration } from '../../constants/constants';
 
 function MoviesCardList(props) {
-  const [movies, setMove] = React.useState([]);
+  const [move, setMove] = React.useState([]);
   const [currentMovieCount, setCurrentMovieCount] = React.useState(rowCount);
   React.useEffect(() => {
     if(!props.clickCheckBox) {
@@ -23,10 +23,18 @@ function MoviesCardList(props) {
     addMovie();
   }
 
+  const movie = {
+    nameRu: props.movies.nameRu,
+    duration: props.movies.duration,
+    image: props.movies.nameRu.image.url || 'нет изображения',
+    trailerLink: props.movies.trailerLink,
+    id: props.movies.id
+  }
+
   return(
     <section className="movies-card-list">
       <div className="movies-card-list__container">
-        {movies.slice(0, currentMovieCount).map(movie => 
+        {props.savedMovies.slice(0, currentMovieCount).map(movie => 
           <MoviesCard 
             movie={movie}
             savedMovies={props.savedMovies}
@@ -38,7 +46,7 @@ function MoviesCardList(props) {
       </div>
       <button
         onClick={handleClick}
-        className={(movies.slice(currentMovieCount).length !== 0) ? 
+        className={(props.savedMovies.slice(currentMovieCount).length !== 0) ? 
           'movies-card-list__button' : 'movies-card-list__button movies-card-list__button_disabled'} 
         type="button"
       >
