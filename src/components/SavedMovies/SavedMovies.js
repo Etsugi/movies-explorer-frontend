@@ -26,7 +26,7 @@ function SavedMovies(props) {
   }
 
   return(
-    <section className="movies">
+    <main className="movies">
       <SearchForm 
         clickSearch={clickSearch}
         clickCheckBox={clickCheckBox}
@@ -41,7 +41,7 @@ function SavedMovies(props) {
               />
           }</>
       }
-    </section>
+    </main>
   );
 }
 

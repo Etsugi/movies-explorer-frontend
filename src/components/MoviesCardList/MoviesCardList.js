@@ -5,6 +5,7 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 import { count, rowCount, ShortFilmDuration } from '../../constants/constants';
 
 function MoviesCardList(props) {
+  console.log(count);
   const [movies, setMovies] = React.useState([]);
   const [currentMovieCount, setCurrentMovieCount] = React.useState(rowCount);
   React.useEffect(() => {
@@ -24,7 +25,7 @@ function MoviesCardList(props) {
   }
 
   return(
-    <section className="movies-card-list">
+    <div className="movies-card-list">
       <div className="movies-card-list__container">
         {movies.slice(0, currentMovieCount).map(movie => 
           <MoviesCard 
@@ -44,7 +45,7 @@ function MoviesCardList(props) {
       >
         Ещё
       </button>
-    </section>
+    </div>
   );
 }
 

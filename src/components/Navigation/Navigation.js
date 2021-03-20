@@ -14,7 +14,7 @@ function Navigation(props) {
   }
 
   return(
-    <section className="navigation">
+    <nav className="navigation">
       <div className="navigation__container">
         <NavLink
           to="/movies"
@@ -84,7 +84,7 @@ function Navigation(props) {
           <img className="navigation__logo-profile" src={`${ProfileIcon}`} alt="Лого профиля" />
         </NavLink>
       </div>
-    </section>
+    </nav>
   );
 }
 

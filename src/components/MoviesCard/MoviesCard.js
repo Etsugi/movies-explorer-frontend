@@ -35,7 +35,7 @@ function MoviesCard(props) {
   }
 
   return (
-    <article className="movies-card">
+    <div className="movies-card">
       <div className="movies-card__container">
         <div className="movies-card__text-container">
           <p className="movies-card__title">{props.movie.nameRU}</p>
@@ -48,10 +48,10 @@ function MoviesCard(props) {
         >
         </button>
       </div>
-      <a href={props.movie.trailerLink} className="movies-card__link" target="_blank">
+      <a href={props.movie.trailerLink} rel="noreferrer" target="_blank" className="movies-card__link">
         <img className="movies-card__image" alt={props.movie.nameRU} src={image()} />
       </a>
-    </article>
+    </div>
   );
 }
 

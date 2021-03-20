@@ -25,7 +25,7 @@ function SavedMoviesCard(props) {
   }
 
   return (
-    <article className="movies-card">
+    <div className="movies-card">
       <div className="movies-card__container">
         <div className="movies-card__text-container">
           <p className="movies-card__title">{props.movie.nameRU}</p>
@@ -38,10 +38,10 @@ function SavedMoviesCard(props) {
         >
         </button>
       </div>
-      <a href={props.movie.trailer} className="movies-card__link" target="_blank">
+      <a href={props.movie.trailer} rel="noreferrer" target="_blank" className="movies-card__link">
         <img className="movies-card__image" alt={props.movie.nameRU} src={image()} />
       </a>
-    </article>
+    </div>
   );
 }
 

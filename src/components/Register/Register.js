@@ -6,10 +6,6 @@ import RegisterFormSchema from "../FormValidator/RegisterForm.js";
 import Logo from "../../images/logo.svg";
 
 function Register(props) {
-  const [submitMessage, setSubmitMessage] = React.useState('');
-  React.useEffect(() => {
-    setSubmitMessage(props.submitMessage);
-  }, [props.submitMessage]);
 
   function handleSubmit(values) {
     props.onRegistration({
@@ -19,12 +15,8 @@ function Register(props) {
     });
   }
 
-  function handleChange() {
-    props.setSubmitMessage('');
-  }
-
   return (
-    <div className="register">
+    <main className="register">
       <Formik
         initialValues={{
           name: "",
@@ -35,54 +27,52 @@ function Register(props) {
         onSubmit={values => {
           handleSubmit(values);
         }}
-        render={({ errors }) => (
+      >
+        {props => (
           <Form className="form" noValidate>
-            <Link
-              to="/"
-              className="form__logo-container"
-              type="button"
-            >
+            <Link to="/" className="form__logo-container">
               <img className="form__logo" src={`${Logo}`} alt="Лого" />
             </Link>
             <h2 className="form__title">Добро пожаловать!</h2>
             <h3 className="form__input_placeholder">Имя</h3>
             <Field
-              type="name"
+              type="text"
               name="name"
               placeholder=""
-              onInput={handleChange}
-              className={errors.name ? 'form__input form__input_error' : 'form__input'}
+              className={props.errors.name ? 'form__input form__input_error' : 'form__input'}
             />
-            <span className='form__error'>{errors.name}</span>
+            <span className='form__error'>{props.errors.name}</span>
             <h3 className="form__input_placeholder">E-mail</h3>
             <Field
-              type="email"
+              type="text"
               name="email"
               placeholder=""
-              onInput={handleChange}
-              className={errors.email ? 'form__input form__input_error' : 'form__input'}
+              className={props.errors.email ? 'form__input form__input_error' : 'form__input'}
             />
-            <span className='form__error'>{errors.email}</span>
+            <span className='form__error'>{props.errors.email}</span>
             <h3 className="form__input_placeholder">Пароль</h3>
             <Field
               type="password"
               name="password"
               placeholder=""
-              onInput={handleChange}
-              className={errors.password ? 'form__input form__input_error' : 'form__input'}
+              className={props.errors.password ? 'form__input form__input_error' : 'form__input'}
             />
-            <span className='form__error'>{errors.password}</span>
-            <span className="form__error form__submit-message">{submitMessage}</span>
-            <button className={(errors.name || errors.password || errors.email) ? 'form__button form__button_disabled' : 
-              'form__button'} type="submit">Зарегистрироваться</button>
+            <span className='form__error'>{props.errors.password}</span>
+            <button 
+              className={(props.errors.name || props.errors.password || props.errors.email) 
+                  ? 'form__button form__button_disabled' : 'form__button'}
+                type="submit"
+              >
+                Зарегистрироваться
+              </button>
             <div className="form__switch">
               <p className="form__switch_text">Уже зарегистрированы?</p>
-              <Link to="/signin" className="form__switch_text form__switch_button" type="button">Войти</Link>
+              <Link to="/signin" className="form__switch_text form__switch_button">Войти</Link>
             </div>
           </Form>
         )}
-      />
-    </div>
+      </Formik>
+    </main>
   );
 }
 

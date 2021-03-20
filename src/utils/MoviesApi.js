@@ -23,16 +23,3 @@ function resHandler(res) {
 export default {
   getMovies
 }
-
-/*body: JSON.stringify({
-  nameRU: data.nameRu,
-  nameEN: data.nameEN,
-  director: data.director,
-  country: data.country,
-  year: data.year,
-  duration: data.duration,
-  description: data.description,
-  trailer: data.trailerLink,
-  image: data.image, 
-  thumbnail: data.thumbnail
-})*/

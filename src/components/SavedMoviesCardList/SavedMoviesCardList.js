@@ -24,7 +24,7 @@ function MoviesCardList(props) {
   }
 
   return(
-    <section className="movies-card-list">
+    <div className="movies-card-list">
       <div className="movies-card-list__container">
         {movies.slice(0, currentMovieCount).map(movie => 
           <SavedMoviesCard 
@@ -44,7 +44,7 @@ function MoviesCardList(props) {
       >
         Ещё
       </button>
-    </section>
+    </div>
   );
 }
 

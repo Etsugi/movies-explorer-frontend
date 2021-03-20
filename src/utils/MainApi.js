@@ -132,7 +132,7 @@ function resHandler(res) {
   if (res.ok) {
     return res.json();
   }
-  return res.status;
+  return res.json().then((err) => { throw err.message });
 };
 
 export default {

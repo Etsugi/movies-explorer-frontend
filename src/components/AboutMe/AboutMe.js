@@ -18,8 +18,22 @@ function AboutMe(props) {
             разработку.
           </p>
           <div className="about-me__container-link">
-            <a href="https://www.facebook.com/" className="about-me__link" target="_blank">Facebook</a>
-            <a href="https://github.com/Etsugi" className="about-me__link" target="_blank">Github</a>
+            <a 
+              href="https://www.facebook.com/"
+              rel="noreferrer"
+              className="about-me__link"
+              target="_blank"
+            >
+              Facebook
+            </a>
+            <a
+              href="https://github.com/Etsugi"
+              rel="noreferrer"
+              className="about-me__link"
+              target="_blank"
+            >
+              Github
+            </a>
           </div>
         </div>
         <img className="about-me__photo" src={Profile} alt="Фото"/>

@@ -14,7 +14,7 @@ function Header(props) {
         <img className="header__logo" src={`${Logo}`} alt="Лого" />
       </Link>
       
-      {(path != "/" || props.login != false) ?
+      {(path !== "/" || props.login !== false) ?
         <Navigation />
       :
         <div className="header__container">

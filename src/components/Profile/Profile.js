@@ -13,11 +13,6 @@ function Profile(props) {
     setPreloader(false);;
   }, [user]);
 
-  const [submitMessage, setSubmitMessage] = React.useState('');
-  React.useEffect(() => {
-    setSubmitMessage(props.submitMessage);
-  }, [props.submitMessage]);
-
   function handleSubmit(values) {
     setPreloader(true);
     props.onEditUser({
@@ -30,13 +25,8 @@ function Profile(props) {
     props.onLogout();
   }
 
-  function handleChange() {
-    props.setSubmitMessage('');
-  };
-
   return (
-    <div className="profile">
-      
+    <main className="profile">
       <Formik
         enableReinitialize={true}
         initialValues={{
@@ -47,39 +37,37 @@ function Profile(props) {
         onSubmit={values => {
           handleSubmit(values);
         }}
-          render={({ errors }) => (
+      >
+          {props => (
           <Form className="form profile__form" noValidate>
             {isPreloader ? <PreloaderFull /> : ''}
             <h2 className="profile__form-title">Привет, {user.name}!</h2>
             <h3 className="form__input_placeholder profile__form-input_placeholder">Имя</h3>
             <Field 
-              type="name" 
+              type="text" 
               name="name" 
               placeholder="" 
-              onInput={handleChange}
-              className={errors.name ? 'form__input profile__form-input form__input_error' : 
+              className={props.errors.name ? 'form__input profile__form-input form__input_error' : 
                 'form__input profile__form-input'}
             />
-            <span className='form__error profile__form-error'>{errors.name}</span>
+            <span className='form__error profile__form-error'>{props.errors.name}</span>
             <h3 className="form__input_placeholder profile__form-input_placeholder">Почта</h3>
             <Field
-              type="email"
+              type="text"
               name="email"
               placeholder=""
-              onInput={handleChange}
-              className={errors.email ? 'form__input profile__form-input form__input_error' : 
+              className={props.errors.email ? 'form__input profile__form-input form__input_error' : 
                 'form__input profile__form-input'}
             />
-            <span className='form__error profile__form-error'>{errors.email}</span>
-            <span className="form__error form__submit-message">Сабж ответа</span>
+            <span className='form__error profile__form-error'>{props.errors.email}</span>
             <button className="profile__form-button" type="submit">Редактировать</button>
             <button onClick={handleLogout} className="profile__form-button profile__form-button_signout" type="button">
               Выйти из аккаунта
             </button>
           </Form>
         )}
-      />
-    </div>
+      </Formik>
+    </main>
   );
 }
 

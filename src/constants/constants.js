@@ -1,5 +1,10 @@
 const ShortFilmDuration = 40;
 
+const InfoToolTipImageAlt = {
+  ok: 'Запрос успешен',
+  fail: 'Запрос неудачен'
+}
+
 function countGridElement() {
   let count = 1;
   if (window.innerWidth < 636) {
@@ -22,4 +27,4 @@ window.addEventListener('resize', countGridElement);
 const rowCount = count * 4 === 4 ? 5 : count * 4;
 
 
-export { count, rowCount, ShortFilmDuration };
+export { count, rowCount, ShortFilmDuration, InfoToolTipImageAlt };

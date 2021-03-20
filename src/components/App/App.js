@@ -12,22 +12,10 @@ import Register from "../Register/Register.js";
 import Login from "../Login/Login.js";
 import Profile from "../Profile/Profile.js";
 import NotFound from "../NotFound/NotFound.js";
+import InfoTooltip from "../InfoToolTip/InfoTooltip.js";
 
 import MainApi from '../../utils/MainApi';
 import MoviesApi from '../../utils/MoviesApi';
-
-import {
-  InternalServerErrMess,
-  badRequestErrMess,
-  conflictUserReqErrMess,
-  conflictMovieReqErrMess,
-  forbiddenErrMess,
-  urlNotFoundErrMess,
-  movieNotFoundErrMess,
-  authorizedFailErrMess,
-  unauthorizedErrMess,
-  profileUpdate
-} from '../../constants/submit-messages';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 
@@ -35,15 +23,18 @@ function App() {
   const history = useHistory();
 
   const [token, setToken] = React.useState('');
-  const [isPreloader, setPreloader] = React.useState(true);
+  const [isPreloader, setPreloader] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState('');
   const [movies, setMovies] = React.useState([]);
   const [savedMovies, setSavedMovies] = React.useState([]);
   const [initMovie, setInitMovie] = React.useState(false);
   const [initSavedMovie, setInitSavedMovie] = React.useState(false);
-  const [submitMessage, setSubmitMessage] = React.useState('');
+  const [message, setMessage] = React.useState('');
+  const [messageType, setMessageType] = React.useState(false);
+  const [isInfoTooltipPopupOpen, setInfoTooltipPopupOpen] = React.useState(false);
 
   const [loggedIn, setLoggedIn] = React.useState(false);
+
   React.useEffect(() => {
     checkAuthorize();
   }, []);
@@ -64,18 +55,19 @@ function App() {
     if (jwt){    
       setToken(jwt);
       MainApi.checkToken(jwt)
-      .then((data) => {
-        if(data === 401) {
-          setSubmitMessage(authorizedFailErrMess);
-        }
-        else {
-          getMovies();
-          checkCurrentUser(jwt);
-          setLoggedIn(true);
-          setSubmitMessage('');
-          history.push('/movies');
-        }
+      .then(() => {
+        checkCurrentUser(jwt);
+        setLoggedIn(true);
+        if(JSON.parse(localStorage.getItem('movies'))) {
+          setInitMovie(true);
+          setInitSavedMovie(true);
+        };
+        history.push('/movies');
       })
+      .catch((err) => {
+        setMessage(err);
+        setInfoTooltipPopupOpen(true);
+      });
     } else {
       setLoggedIn(false);
     }
@@ -89,7 +81,8 @@ function App() {
       })
     )
     .catch((err) => {
-      console.log(err);
+      setMessage(err);
+      setInfoTooltipPopupOpen(true);
     });
   }
 
@@ -97,22 +90,15 @@ function App() {
     const password = data.password;
     MainApi.register(data)
     .then((data) => {
-      if(data === 400) {
-        setSubmitMessage(badRequestErrMess);
-      }if(data === 409) {
-        setSubmitMessage(conflictUserReqErrMess);
+      const user = { 
+        email: data.email,
+        password: password
       }
-      else {
-        const user = { 
-          email: data.email,
-          password: password
-        }
-        clickLogin(user);
-      }
+      clickLogin(user);
     })
     .catch((err) => {
-      setSubmitMessage(InternalServerErrMess);
-      console.log(err);
+      setMessage(err);
+      setInfoTooltipPopupOpen(true);
     });
   }
 
@@ -122,17 +108,20 @@ function App() {
       localStorage.setItem('jwt', data.token);
     })
     .then(() => {
+      getMovies();
       checkAuthorize();
       history.push("/movies");
     })
     .catch((err) => {
-      setSubmitMessage(InternalServerErrMess);
-      console.log(err);
+      setMessage(err);
+      setInfoTooltipPopupOpen(true);
     })
   }
 
   function clickLogout() {
     setToken('');
+    setInitMovie(false);
+    setInitSavedMovie(false);
     setLoggedIn(false);
     localStorage.clear();
     history.push('/');
@@ -142,26 +131,20 @@ function App() {
     MainApi.editUser(userData, token)
     .then((userData) => {
       setCurrentUser(userData);
-      setSubmitMessage(profileUpdate)
+      setMessageType(true);
+      setMessage('Изменения сохранены!');
+      setInfoTooltipPopupOpen(true);
     })
     .catch((err) => {
-      console.log(err);
+      setMessage(err);
+      setInfoTooltipPopupOpen(true);
     });
   }
 
   function getMovies() {
-    MoviesApi.getMovies()
-    .then((data) => {
-      localStorage.setItem('movies', JSON.stringify(data));
-    })
-    .then(() => {
-      setInitMovie(true);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-
     const jwt = localStorage.getItem('jwt');
+    setPreloader(true);
+    
     MainApi.getSavedMovies(jwt)
     .then((data) => {
       localStorage.setItem('saved-movies', JSON.stringify(data))
@@ -170,8 +153,22 @@ function App() {
       setInitSavedMovie(true);
     })
     .catch((err) => {
-      console.log(err);
+      setMessage(err);
+      setInfoTooltipPopupOpen(true);
     });
+
+    MoviesApi.getMovies()
+    .then((data) => {
+      localStorage.setItem('movies', JSON.stringify(data));
+    })
+    .then(() => {
+      setInitMovie(true);
+    })
+    .catch((err) => {
+      setMessage(err);
+      setInfoTooltipPopupOpen(true);
+    });
+ 
   }
 
   function clickSaveMovie(data) {
@@ -184,7 +181,8 @@ function App() {
       }   
     })
     .catch((err) => {
-      console.log(err);
+      setMessage(err);
+      setInfoTooltipPopupOpen(true);
     })
   }
 
@@ -195,8 +193,17 @@ function App() {
       setSavedMovies(JSON.parse(localStorage.getItem('saved-movies')));
     })
     .catch((err) => {
-      console.log(err);
+      setMessage(err);
+      setInfoTooltipPopupOpen(true);
     })
+  }
+
+  function closeAllPopups() {
+    setInfoTooltipPopupOpen(false);
+    setTimeout(() => {
+      setMessage('');
+      setMessageType(false);
+    }, 300);
   }
 
   const arrayRoutesExcludeHeader = [
@@ -222,82 +229,83 @@ function App() {
         /> 
       }
 
-      {isPreloader ? <Preloader /> : 
+      <Switch>
 
-        <Switch>
+        <Route exact path="/signup">
+          <Register 
+            onRegistration={clickRegistration}
+          />
+        </Route>
 
-          <Route exact path="/signup">
-            <Register 
-              onRegistration={clickRegistration}
-              submitMessage={submitMessage}
-              setSubmitMessage={setSubmitMessage}
+        <Route exact path="/signin">
+          <Login 
+            onLogin={clickLogin}
+          />
+        </Route>
+
+        <ProtectedRoute
+          exact
+          path="/profile"
+          redirect="/"
+          loggedIn={loggedIn}
+          component={Profile}
+          user={currentUser}
+          onLogout={clickLogout}
+          onEditUser={handleEditUser}
+        />
+
+        <Route exact path="/">
+          <Main />
+        </Route>
+
+        {isPreloader ? <Preloader /> : 
+          <Switch>
+            <ProtectedRoute
+              exact
+              path="/movies"
+              redirect="/"
+              loggedIn={loggedIn}
+              component={Movies}
+              movies={movies}
+              savedMovies={savedMovies}
+              clickSaveMovie={clickSaveMovie}
+              clickUnsaveMovie={clickUnsaveMovie}
             />
-          </Route>
 
-          <Route exact path="/signin">
-            <Login 
-              onLogin={clickLogin}
-              submitMessage={submitMessage}
-              setSubmitMessage={setSubmitMessage}
+            <ProtectedRoute
+              exact
+              path="/saved-movies"
+              redirect="/"
+              loggedIn={loggedIn}
+              component={SavedMovies}
+              movies={movies}
+              savedMovies={savedMovies}
+              clickSaveMovie={clickSaveMovie}
+              clickUnsaveMovie={clickUnsaveMovie}
             />
-          </Route>
+         </Switch>
+        }
 
-          <ProtectedRoute
-            exact
-            path="/profile"
-            redirect="/"
-            loggedIn={loggedIn}
-            component={Profile}
-            user={currentUser}
-            onLogout={clickLogout}
-            onEditUser={handleEditUser}
-            submitMessage={submitMessage}
-            setSubmitMessage={setSubmitMessage}
-          />
+        <Route path="/404">
+          <NotFound />
+        </Route>
 
-          <Route exact path="/">
-            <Main />
-          </Route>
+        <Route path="*">
+          <Redirect to="/404" />
+        </Route>
 
-          <ProtectedRoute
-            exact
-            path="/movies"
-            redirect="/"
-            loggedIn={loggedIn}
-            component={Movies}
-            movies={movies}
-            savedMovies={savedMovies}
-            clickSaveMovie={clickSaveMovie}
-            clickUnsaveMovie={clickUnsaveMovie}
-          />
+      </Switch>
 
-          <ProtectedRoute
-            exact
-            path="/saved-movies"
-            redirect="/"
-            loggedIn={loggedIn}
-            component={SavedMovies}
-            movies={movies}
-            savedMovies={savedMovies}
-            clickSaveMovie={clickSaveMovie}
-            clickUnsaveMovie={clickUnsaveMovie}
-          />
-
-          <Route path="/404">
-            <NotFound />
-          </Route>
-
-          <Route path="*">
-            <Redirect to="/404" />
-          </Route>
-
-        </Switch>
-
+      { useRouteMatch(arrayRoutesExcludeFooter) ? null : 
+        <Footer />
       }
 
-        { useRouteMatch(arrayRoutesExcludeFooter) ? null : 
-          <Footer />
-        }
+      <InfoTooltip
+        message={message}
+        messageType={messageType}
+        isOpen={isInfoTooltipPopupOpen} 
+        onClose={closeAllPopups}
+      />
 
       </div>
     </CurrentUserContext.Provider>

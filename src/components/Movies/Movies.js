@@ -10,7 +10,7 @@ function Movies(props) {
   const [checkbox, setCheckBox] = React.useState(false);
   React.useEffect(() => {
     setMovies(props.movies);
-  }, [props.movies]);
+  }, [props.movies, props.savedMovies]);
   React.useEffect(() => {
     setPreloader(false);;
   }, [movies]);
@@ -26,7 +26,7 @@ function Movies(props) {
   }
 
   return(
-    <section className="movies">
+    <main className="movies">
       <SearchForm 
         clickSearch={clickSearch}
         clickCheckBox={clickCheckBox}
@@ -42,7 +42,7 @@ function Movies(props) {
               />
           }</>
       }
-    </section>
+    </main>
   );
 }
 
