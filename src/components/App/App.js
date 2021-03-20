@@ -221,7 +221,6 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser} >
-      <div className="app">
 
       { useRouteMatch(arrayRoutesExcludeHeader) ? null : 
         <Header 
@@ -307,7 +306,6 @@ function App() {
         onClose={closeAllPopups}
       />
 
-      </div>
     </CurrentUserContext.Provider>
   );
 }
