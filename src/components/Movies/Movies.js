@@ -10,7 +10,7 @@ function Movies(props) {
   const [checkbox, setCheckBox] = React.useState(false);
   React.useEffect(() => {
     setMovies(props.movies);
-  }, [props.movies, props.savedMovies]);
+  }, [props.movies]);
   React.useEffect(() => {
     setPreloader(false);;
   }, [movies]);

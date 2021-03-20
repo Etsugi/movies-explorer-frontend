@@ -48,7 +48,7 @@ function App() {
     if(loggedIn) {
       setSavedMovies(JSON.parse(localStorage.getItem('saved-movies')));
     }
-  }, [initSavedMovie]);
+  }, [initSavedMovie, loggedIn]);
   
   function checkAuthorize() {
     const jwt = localStorage.getItem('jwt');

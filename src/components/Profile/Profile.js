@@ -10,7 +10,7 @@ function Profile(props) {
   const user = React.useContext(CurrentUserContext);
   const [isPreloader, setPreloader] = React.useState(true);
   React.useEffect(() => {
-    setPreloader(false);;
+    setPreloader(false);
   }, [user]);
 
   function handleSubmit(values) {
@@ -46,7 +46,7 @@ function Profile(props) {
             <Field 
               type="text" 
               name="name" 
-              placeholder="" 
+              placeholder=""
               className={props.errors.name ? 'form__input profile__form-input form__input_error' : 
                 'form__input profile__form-input'}
             />

@@ -5,7 +5,6 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 import { count, rowCount, ShortFilmDuration } from '../../constants/constants';
 
 function MoviesCardList(props) {
-  console.log(count);
   const [movies, setMovies] = React.useState([]);
   const [currentMovieCount, setCurrentMovieCount] = React.useState(rowCount);
   React.useEffect(() => {
