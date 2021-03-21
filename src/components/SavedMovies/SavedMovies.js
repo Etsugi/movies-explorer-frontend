@@ -5,14 +5,18 @@ import SearchForm from '../SearchForm/SearchForm';
 import SavedMoviesCardList from '../SavedMoviesCardList/SavedMoviesCardList';
 
 function SavedMovies(props) {
-  const [isPreloader, setPreloader] = React.useState(false);
+  const [isPreloader, setPreloader] = React.useState(true);
   const [savedMovies, setSavedMovies] = React.useState([]);
   const [checkbox, setCheckBox] = React.useState(false);
   React.useEffect(() => {
-    setSavedMovies(props.savedMovies);
+    if (props.savedMovies !== null) {
+      setSavedMovies(props.savedMovies);
+    } 
   }, [props.savedMovies]);
   React.useEffect(() => {
-    setPreloader(false);;
+    if(savedMovies.length !== 0) {
+      setPreloader(false);
+    }
   }, [savedMovies]);
 
   function clickCheckBox() {

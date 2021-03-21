@@ -33,7 +33,7 @@ async function authorize(data) {
   })
 }; 
 
-async function checkToken(token) {
+/*async function checkToken(token) {
   return await fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
     headers: {
@@ -45,7 +45,7 @@ async function checkToken(token) {
   .then((res) => {
     return resHandler(res);
   })
-}
+}*/
 
 async function getUserInfo(token) {
   return await fetch(`${BASE_URL}/users/me`, {
@@ -138,7 +138,6 @@ function resHandler(res) {
 export default {
   register,
   authorize,
-  checkToken,
   getUserInfo,
   editUser,
   getSavedMovies,

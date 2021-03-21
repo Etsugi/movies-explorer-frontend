@@ -22,68 +22,61 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 function App() {
   const history = useHistory();
 
+  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [initialization, setInitialization] = React.useState(false);
+
   const [token, setToken] = React.useState('');
-  const [isPreloader, setPreloader] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState('');
-  const [movies, setMovies] = React.useState([]);
+  const [movies, setMovies] = React.useState([]); 
   const [savedMovies, setSavedMovies] = React.useState([]);
-  const [initMovie, setInitMovie] = React.useState(false);
-  const [initSavedMovie, setInitSavedMovie] = React.useState(false);
+  const [initMovies, setInitMovies] = React.useState(false);
+  const [initSavedMovies, setInitSavedMovies] = React.useState(false);
   const [message, setMessage] = React.useState('');
   const [messageType, setMessageType] = React.useState(false);
   const [isInfoTooltipPopupOpen, setInfoTooltipPopupOpen] = React.useState(false);
 
-  const [loggedIn, setLoggedIn] = React.useState(false);
+  React.useEffect(() => {
+    if (loggedIn === true) {
+      if (localStorage.getItem('movies')) {
+        setMovies(JSON.parse(localStorage.getItem('movies')));
+      }
+      if (localStorage.getItem('saved-movies')) {
+        setSavedMovies(JSON.parse(localStorage.getItem('saved-movies')));
+      }
+    } else {
+      checkAuthorize();
+    }
+  }, [loggedIn]);
 
   React.useEffect(() => {
-    checkAuthorize();
-  }, []);
+    setMovies(JSON.parse(localStorage.getItem('movies'))); 
+  }, [initMovies]);
   React.useEffect(() => {
-    if(loggedIn) {
-      setMovies(JSON.parse(localStorage.getItem('movies')));
-      setPreloader(false);
-    }
-  }, [initMovie]);
-  React.useEffect(() => {
-    if(loggedIn) {
-      setSavedMovies(JSON.parse(localStorage.getItem('saved-movies')));
-    }
-  }, [initSavedMovie, loggedIn]);
+    setSavedMovies(JSON.parse(localStorage.getItem('saved-movies')));
+  }, [initSavedMovies]);
+
   
   function checkAuthorize() {
     const jwt = localStorage.getItem('jwt');
-    if (jwt){    
+    if (jwt) {    
       setToken(jwt);
-      MainApi.checkToken(jwt)
-      .then(() => {
-        checkCurrentUser(jwt);
+      MainApi.getUserInfo(jwt)
+      .then((data) => {
+        setCurrentUser(data);
         setLoggedIn(true);
-        if(JSON.parse(localStorage.getItem('movies'))) {
-          setInitMovie(true);
-          setInitSavedMovie(true);
+        /*if(JSON.parse(localStorage.getItem('movies'))) {
+          setInitMovies(true);
         };
-        history.push('/movies');
+        if(JSON.parse(localStorage.getItem('saved-movies'))) {
+          setInitSavedMovies(true);
+        };*/
       })
       .catch((err) => {
         setMessage(err);
         setInfoTooltipPopupOpen(true);
       });
-    } else {
-      setLoggedIn(false);
     }
-  }
-
-  function checkCurrentUser(jwt) {
-    const initialCurrentUser = MainApi.getUserInfo(jwt);
-    initialCurrentUser.then((data => {
-      const userData = data;
-      setCurrentUser(userData);
-      })
-    )
-    .catch((err) => {
-      setMessage(err);
-      setInfoTooltipPopupOpen(true);
-    });
+    setInitialization(true);
   }
 
   function clickRegistration(data) {
@@ -120,11 +113,11 @@ function App() {
 
   function clickLogout() {
     setToken('');
-    setInitMovie(false);
-    setInitSavedMovie(false);
+    setInitMovies(false);
+    setInitSavedMovies(false);
     setLoggedIn(false);
     localStorage.clear();
-    history.push('/');
+    history.push("/");
   }
 
   function handleEditUser(userData) {
@@ -143,14 +136,13 @@ function App() {
 
   function getMovies() {
     const jwt = localStorage.getItem('jwt');
-    setPreloader(true);
     
     MainApi.getSavedMovies(jwt)
     .then((data) => {
       localStorage.setItem('saved-movies', JSON.stringify(data))
     })
     .then(() => {
-      setInitSavedMovie(true);
+      setInitSavedMovies(true);
     })
     .catch((err) => {
       setMessage(err);
@@ -162,13 +154,12 @@ function App() {
       localStorage.setItem('movies', JSON.stringify(data));
     })
     .then(() => {
-      setInitMovie(true);
+      setInitMovies(true);
     })
     .catch((err) => {
       setMessage(err);
       setInfoTooltipPopupOpen(true);
     });
- 
   }
 
   function clickSaveMovie(data) {
@@ -177,7 +168,7 @@ function App() {
       if(savedMovies.includes(res)) {
       } else {
         localStorage.setItem('saved-movies', JSON.stringify(savedMovies.concat(res)));
-        setSavedMovies(JSON.parse(localStorage.getItem('saved-movies')));
+        setInitSavedMovies(JSON.parse(localStorage.getItem('saved-movies')));
       }   
     })
     .catch((err) => {
@@ -190,7 +181,7 @@ function App() {
     MainApi.unSaveMovie(data, token)
     .then((res) => {
       localStorage.setItem('saved-movies', JSON.stringify(savedMovies.filter((item) => item.movieId !== res.movieId)));
-      setSavedMovies(JSON.parse(localStorage.getItem('saved-movies')));
+      setInitSavedMovies(JSON.parse(localStorage.getItem('saved-movies')));
     })
     .catch((err) => {
       setMessage(err);
@@ -224,41 +215,20 @@ function App() {
 
       { useRouteMatch(arrayRoutesExcludeHeader) ? null : 
         <Header 
-          login={loggedIn}
+          loggedIn={loggedIn}
         /> 
       }
 
-      <Switch>
+      {
+        !initialization ? <Preloader /> :
+        <>
 
-        <Route exact path="/signup">
-          <Register 
-            onRegistration={clickRegistration}
-          />
-        </Route>
-
-        <Route exact path="/signin">
-          <Login 
-            onLogin={clickLogin}
-          />
-        </Route>
-
-        <ProtectedRoute
-          exact
-          path="/profile"
-          redirect="/"
-          loggedIn={loggedIn}
-          component={Profile}
-          user={currentUser}
-          onLogout={clickLogout}
-          onEditUser={handleEditUser}
-        />
-
-        <Route exact path="/">
-          <Main />
-        </Route>
-
-        {isPreloader ? <Preloader /> : 
           <Switch>
+
+            <Route exact path="/">
+              <Main />
+            </Route>
+
             <ProtectedRoute
               exact
               path="/movies"
@@ -282,18 +252,48 @@ function App() {
               clickSaveMovie={clickSaveMovie}
               clickUnsaveMovie={clickUnsaveMovie}
             />
-         </Switch>
-        }
 
-        <Route path="/404">
-          <NotFound />
-        </Route>
+            <ProtectedRoute
+              exact 
+              path="/signup"
+              redirect="/movies"
+              loggedIn={!loggedIn}
+              component={Register}
+              onRegistration={clickRegistration}
+            />
 
-        <Route path="*">
-          <Redirect to="/404" />
-        </Route>
+            <ProtectedRoute
+              exact 
+              path="/signin"
+              redirect="/movies"
+              loggedIn={!loggedIn}
+              component={Login}
+              onLogin={clickLogin}
+            />
 
-      </Switch>
+            <ProtectedRoute
+              exact
+              path="/profile"
+              redirect="/"
+              loggedIn={loggedIn}
+              component={Profile}
+              user={currentUser}
+              onLogout={clickLogout}
+              onEditUser={handleEditUser}
+            />
+
+            <Route path="/404">
+              <NotFound />
+            </Route>
+
+            <Route path="*">
+              <Redirect to="/404" />
+            </Route>
+
+          </Switch>
+
+        </>
+      }
 
       { useRouteMatch(arrayRoutesExcludeFooter) ? null : 
         <Footer />
