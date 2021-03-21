@@ -26,7 +26,6 @@ function SavedMovies(props) {
   function clickSearch(data) {
     setSavedMovies(JSON.parse(localStorage.getItem('saved-movies')).filter(movie => 
       movie.nameRU.toUpperCase().indexOf(data.toUpperCase()) > -1));
-    setPreloader(true);
   }
 
   return(

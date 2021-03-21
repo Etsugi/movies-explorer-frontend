@@ -234,7 +234,6 @@ function App() {
               loggedIn={loggedIn}
               component={Movies}
               movies={movies}
-              initMovies={initMovies}
               savedMovies={savedMovies}
               clickSaveMovie={clickSaveMovie}
               clickUnsaveMovie={clickUnsaveMovie}

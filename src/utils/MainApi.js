@@ -33,20 +33,6 @@ async function authorize(data) {
   })
 }; 
 
-/*async function checkToken(token) {
-  return await fetch(`${BASE_URL}/users/me`, {
-    method: 'GET',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Authorization' : `Bearer ${token}`
-    }
-  })
-  .then((res) => {
-    return resHandler(res);
-  })
-}*/
-
 async function getUserInfo(token) {
   return await fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
