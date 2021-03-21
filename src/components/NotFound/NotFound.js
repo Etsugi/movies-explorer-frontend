@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 function NotFound() {
   const history = useHistory();
+  
   return (
     <main className="not-found" >
       <h1 className="not-found__text_big">404</h1>

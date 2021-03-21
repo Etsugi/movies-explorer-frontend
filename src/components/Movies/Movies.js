@@ -8,25 +8,21 @@ function Movies(props) {
   const [isPreloader, setPreloader] = React.useState(true);
   const [movies, setMovies] = React.useState([]);
   const [checkbox, setCheckBox] = React.useState(false);
+
   React.useEffect(() => {
     if (props.movies !== null) {
+      setPreloader(false);
       setMovies(props.movies);
     }
-  }, [props.movies, props.savedMovies]);
-  React.useEffect(() => {
-    if(movies.length !== 0) {
-      setPreloader(false);
-    }
-  }, [movies]);
-
-  function clickCheckBox() {
-    setCheckBox(!checkbox);
-  }
+  }, [props.movies]);
 
   function clickSearch(data) {
     setMovies(JSON.parse(localStorage.getItem('movies')).filter(movie => 
       movie.nameRU.toUpperCase().indexOf(data.toUpperCase()) > -1));
-    setPreloader(true);
+  }
+
+  function clickCheckBox() {
+    setCheckBox(!checkbox);
   }
 
   return(

@@ -39,9 +39,11 @@ function App() {
     if (loggedIn === true) {
       if (localStorage.getItem('movies')) {
         setMovies(JSON.parse(localStorage.getItem('movies')));
+        setInitMovies(!initMovies);
       }
       if (localStorage.getItem('saved-movies')) {
         setSavedMovies(JSON.parse(localStorage.getItem('saved-movies')));
+        setInitSavedMovies(!initSavedMovies);
       }
     } else {
       checkAuthorize();
@@ -64,19 +66,17 @@ function App() {
       .then((data) => {
         setCurrentUser(data);
         setLoggedIn(true);
-        /*if(JSON.parse(localStorage.getItem('movies'))) {
-          setInitMovies(true);
-        };
-        if(JSON.parse(localStorage.getItem('saved-movies'))) {
-          setInitSavedMovies(true);
-        };*/
       })
       .catch((err) => {
         setMessage(err);
         setInfoTooltipPopupOpen(true);
-      });
+      })
+      .finally(() => {
+        setInitialization(true);
+      })
+    } else {
+      setInitialization(true);
     }
-    setInitialization(true);
   }
 
   function clickRegistration(data) {
@@ -103,7 +103,6 @@ function App() {
     .then(() => {
       getMovies();
       checkAuthorize();
-      history.push("/movies");
     })
     .catch((err) => {
       setMessage(err);
@@ -142,11 +141,11 @@ function App() {
       localStorage.setItem('saved-movies', JSON.stringify(data))
     })
     .then(() => {
-      setInitSavedMovies(true);
+      setInitSavedMovies(!initSavedMovies);
     })
     .catch((err) => {
       setMessage(err);
-      setInfoTooltipPopupOpen(true);
+      setInfoTooltipPopupOpen(!initSavedMovies);
     });
 
     MoviesApi.getMovies()
@@ -154,7 +153,7 @@ function App() {
       localStorage.setItem('movies', JSON.stringify(data));
     })
     .then(() => {
-      setInitMovies(true);
+      setInitMovies(!initMovies);
     })
     .catch((err) => {
       setMessage(err);
@@ -165,11 +164,10 @@ function App() {
   function clickSaveMovie(data) {
     MainApi.saveMovie(data, token)
     .then((res) => {
-      if(savedMovies.includes(res)) {
-      } else {
+      if(!savedMovies.includes(res)) {
         localStorage.setItem('saved-movies', JSON.stringify(savedMovies.concat(res)));
-        setInitSavedMovies(JSON.parse(localStorage.getItem('saved-movies')));
-      }   
+        setInitSavedMovies(!initSavedMovies);
+      } 
     })
     .catch((err) => {
       setMessage(err);
@@ -181,7 +179,7 @@ function App() {
     MainApi.unSaveMovie(data, token)
     .then((res) => {
       localStorage.setItem('saved-movies', JSON.stringify(savedMovies.filter((item) => item.movieId !== res.movieId)));
-      setInitSavedMovies(JSON.parse(localStorage.getItem('saved-movies')));
+      setInitSavedMovies(!initSavedMovies);
     })
     .catch((err) => {
       setMessage(err);
@@ -236,6 +234,7 @@ function App() {
               loggedIn={loggedIn}
               component={Movies}
               movies={movies}
+              initMovies={initMovies}
               savedMovies={savedMovies}
               clickSaveMovie={clickSaveMovie}
               clickUnsaveMovie={clickUnsaveMovie}
