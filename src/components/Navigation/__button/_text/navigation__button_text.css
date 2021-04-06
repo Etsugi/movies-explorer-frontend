@@ -1,6 +1,11 @@
 .navigation__button_text {
   margin: 0;
   padding: 0;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  transition: background-size 0.3s ease-in-out 0s;
 }
 
 @media all and (max-width: 767px) {

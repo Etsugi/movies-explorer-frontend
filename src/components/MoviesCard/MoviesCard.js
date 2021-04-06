@@ -1,35 +1,57 @@
 import React from 'react';
-import { useRouteMatch } from 'react-router-dom';
+
+import noImage from '../../images/no-image.jpg';
 
 function MoviesCard(props) {
-  const { path } = useRouteMatch();
-  const [isSaved, setSaved] = React.useState(props.card.save); //заготовка на будущее
-  const saveButtonClassName = cardSaveButtonClassName();
-  function cardSaveButtonClassName() {
-    if(path === "/saved-movies") {
-      return 'movies-card__save-button movies-card__save-button_delete';
+  const [isSaved, setIsSaved] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsSaved(props.savedMovies.some((item) => item.movieId === String(props.movie.id)));
+  }, [props.savedMovies]);
+
+  function image() {
+    if (props.movie.image) {
+      return `https://api.nomoreparties.co${props.movie.image.url}`;
     }
     else {
-      return (`movies-card__save-button ${isSaved ? 'movies-card__save-button_active' : ''}`);
+      return noImage;
     }
-  };
+  }
+
+  function getTimeFromMinutes() {
+    const min = props.movie.duration;
+    const hours = Math.trunc(min/60);
+    const minutes = min % 60;
+    return hours + 'ч ' + minutes + 'м';
+};
 
   function handleSaveClick() {
-    setSaved(!isSaved);
-    props.card.save = isSaved;
+    if (isSaved) {
+      props.clickUnsaveMovie(props.movie.id);
+    }
+    else {
+      props.clickSaveMovie(props.movie);
+    }
   }
 
   return (
-    <article className="movies-card">
+    <div className="movies-card">
       <div className="movies-card__container">
         <div className="movies-card__text-container">
-          <p className="movies-card__title">{props.card.title}</p>
-          <p className="movies-card__duration">{props.card.duration}</p>
+          <p className="movies-card__title">{props.movie.nameRU}</p>
+          <p className="movies-card__duration">{getTimeFromMinutes()}</p>
         </div>
-        <button onClick={handleSaveClick} type="button" className={saveButtonClassName}></button>
+        <button 
+          onClick={handleSaveClick}
+          type="button"
+          className={`movies-card__save-button ${isSaved ? 'movies-card__save-button_active' : ''}`}
+        >
+        </button>
       </div>
-      <img className="movies-card__image" alt={props.card.title} src={props.card.link} />
-    </article>
+      <a href={props.movie.trailerLink} rel="noreferrer" target="_blank" className="movies-card__link">
+        <img className="movies-card__image" alt={props.movie.nameRU} src={image()} />
+      </a>
+    </div>
   );
 }
 

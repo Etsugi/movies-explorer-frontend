@@ -9,14 +9,13 @@ function Login(props) {
 
   function handleSubmit(values) {
     props.onLogin({
-      name: values.name,
       email: values.email,
       password: values.password
     });
-  }
+  };
 
   return (
-    <div className="login">
+    <main className="login">
       <Formik
         initialValues={{
           name: "",
@@ -27,30 +26,39 @@ function Login(props) {
         onSubmit={values => {
           handleSubmit(values);
         }}
-        render={({ errors }) => (
+      >
+        {props => (
           <Form className="form" noValidate>
-            <Link to="/" className="form__logo-container" type="button">
+            <Link to="/" className="form__logo-container">
               <img className="form__logo" src={`${Logo}`} alt="Лого" />
             </Link>
             <h2 className="form__title">Рады видеть!</h2>
             <h3 className="form__input_placeholder">E-mail</h3>
-            <Field type="email" name="email" placeholder="" className={errors.email ? 
-              'form__input form__input_error' : 'form__input'}/>
-              <span className='form__error'>{errors.email}</span>
+            <Field
+              type="text"
+              name="email"
+              placeholder=""
+              className={props.errors.email ? 'form__input form__input_error' : 'form__input'}
+            />
+            <span className='form__error'>{props.errors.email}</span>
             <h3 className="form__input_placeholder">Пароль</h3>
-            <Field type="password" name="password" placeholder="" className={errors.password ? 
-              'form__input form__input_error' : 'form__input'}/>
-              <span className='form__error'>{errors.password}</span>
-            <button className={(errors.password || errors.email) ? 'form__button form__button_disabled' : 
+            <Field
+              type="password"
+              name="password"
+              placeholder=""
+              className={props.errors.password ? 'form__input form__input_error' : 'form__input'}
+            />
+            <span className='form__error'>{props.errors.password}</span>
+            <button className={(props.errors.password || props.errors.email) ? 'form__button form__button_disabled' : 
               'form__button'} type="submit">Войти</button>
             <div className="form__switch">
               <p className="form__switch_text">Ещё не зарегистрированы?</p>
-              <Link to="/signup" className="form__switch_text form__switch_button" type="button">Регистрация</Link>
+              <Link to="/signup" className="form__switch_text form__switch_button">Регистрация</Link>
             </div>
           </Form>
         )}
-      />
-    </div>
+      </Formik>
+    </main>
   );
 }
 

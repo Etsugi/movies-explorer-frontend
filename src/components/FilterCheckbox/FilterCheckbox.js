@@ -4,12 +4,13 @@ function FilterCheckbox(props) {
 
   function handleClick(e) {
     e.preventDefault();
+    props.clickCheckBox();
   }
 
   return(
     <div className="filter-checkbox">
-      <input id="checkbox" className="filter-checkbox__input" type="checkbox"></input>
-      <label for="checkbox" className="filter-checkbox__text">Короткометражки</label>
+      <input onInput={handleClick} id="checkbox" className="filter-checkbox__input" type="checkbox"></input>
+      <label htmlFor="checkbox" className="filter-checkbox__text">Короткометражки</label>
     </div>
   );
 }

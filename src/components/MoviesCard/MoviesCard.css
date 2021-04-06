@@ -5,6 +5,7 @@
 @import url("./__save-button/movies-card__save-button.css");
 @import url("./__save-button/_active/movies-card__save-button_active.css");
 @import url("./__save-button/_delete/movies-card__save-button_delete.css");
+@import url("./__link/movies-card__link.css");
 @import url("./__image/movies-card__image.css");
 
 .movies-card {

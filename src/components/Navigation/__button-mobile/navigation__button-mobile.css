@@ -12,7 +12,11 @@
   text-align: center;
   color: #FFFFFF;
   text-decoration: none;
-  transition: opacity 0.1s ease-in-out 0s;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  transition: opacity 0.1s ease-in-out 0s, background-size 0.3s ease-in-out 0s !important;
 
   transition: all 0.5s ease-in-out 0s;
 }
@@ -23,6 +27,7 @@
 
 .navigation__button-mobile:last-of-type {
   margin: auto auto 92px;
+  background-size: 0% 2px !important;
 }
 
 .navigation__button-mobile:hover {

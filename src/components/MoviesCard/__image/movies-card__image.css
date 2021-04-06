@@ -1,7 +1,6 @@
 .movies-card__image {
   height: 203px;
   width: 100%;
-  background-image: url(../../../images/test-picture.jpg);
 
   transition: all 0.5s ease-in-out 0s;
 }
