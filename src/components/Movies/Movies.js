@@ -32,15 +32,13 @@ function Movies(props) {
         clickCheckBox={clickCheckBox}
       />
       { isPreloader ? <Preloader /> 
-        : <>{ movies.length === 0 ? <p className="movies__not-found">Ничего не найдено</p> 
-            : <MoviesCardList 
-                movies={movies}
-                savedMovies={props.savedMovies}
-                clickUnsaveMovie={props.clickUnsaveMovie}
-                clickSaveMovie={props.clickSaveMovie}
-                clickCheckBox={checkbox}
-              />
-          }</>
+        : <MoviesCardList 
+            movies={movies}
+            savedMovies={props.savedMovies}
+            clickUnsaveMovie={props.clickUnsaveMovie}
+            clickSaveMovie={props.clickSaveMovie}
+            clickCheckBox={checkbox}
+          />
       }
     </main>
   );

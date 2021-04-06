@@ -14,9 +14,7 @@ function SavedMovies(props) {
     } 
   }, [props.savedMovies]);
   React.useEffect(() => {
-    if(savedMovies.length !== 0) {
-      setPreloader(false);
-    }
+    setPreloader(false);
   }, [savedMovies]);
 
   function clickCheckBox() {
@@ -35,14 +33,12 @@ function SavedMovies(props) {
         clickCheckBox={clickCheckBox}
       />
       { isPreloader ? <Preloader /> 
-        : <>{ savedMovies.length === 0 ? <p className="movies__not-found">Ничего не найдено</p> 
-            : <SavedMoviesCardList 
-                savedMovies={savedMovies}
-                clickSaveMovie={props.clickSaveMovie}
-                clickUnsaveMovie={props.clickUnsaveMovie}
-                clickCheckBox={checkbox}
-              />
-          }</>
+        : <SavedMoviesCardList 
+            savedMovies={savedMovies}
+            clickSaveMovie={props.clickSaveMovie}
+            clickUnsaveMovie={props.clickUnsaveMovie}
+            clickCheckBox={checkbox}
+          />
       }
     </main>
   );

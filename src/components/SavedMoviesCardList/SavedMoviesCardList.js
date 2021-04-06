@@ -24,27 +24,32 @@ function MoviesCardList(props) {
   }
 
   return(
-    <div className="movies-card-list">
-      <div className="movies-card-list__container">
-        {movies.slice(0, currentMovieCount).map(movie => 
-          <SavedMoviesCard 
-            movie={movie}
-            savedMovies={props.savedMovies}
-            clickSaveMovie={props.clickSaveMovie}
-            clickUnsaveMovie={props.clickUnsaveMovie}
-            key={movie.id || movie.movieId}
-          />
-        )}
-      </div>
-      <button
-        onClick={handleClick}
-        className={(props.savedMovies.slice(currentMovieCount).length !== 0) ? 
-          'movies-card-list__button' : 'movies-card-list__button movies-card-list__button_disabled'} 
-        type="button"
-      >
-        Ещё
-      </button>
-    </div>
+    <>
+      { movies.length === 0 ? <p className="movies__not-found">Ничего не найдено</p> 
+        : 
+          <div className="movies-card-list">
+          <div className="movies-card-list__container">
+            {movies.slice(0, currentMovieCount).map(movie => 
+              <SavedMoviesCard 
+                movie={movie}
+                savedMovies={props.savedMovies}
+                clickSaveMovie={props.clickSaveMovie}
+                clickUnsaveMovie={props.clickUnsaveMovie}
+                key={movie.id || movie.movieId}
+              />
+            )}
+          </div>
+          <button
+            onClick={handleClick}
+            className={(props.savedMovies.slice(currentMovieCount).length !== 0) ? 
+              'movies-card-list__button' : 'movies-card-list__button movies-card-list__button_disabled'} 
+            type="button"
+          >
+            Ещё
+          </button>
+          </div>
+      }
+    </>
   );
 }
 

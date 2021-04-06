@@ -4,7 +4,7 @@ import Portfolio from "../Portfolio/Portfolio";
 
 import Profile from "../../images/profile.jpg";
 
-function AboutMe(props) {
+function AboutMe() {
   return(
     <section className="about-me">
       <h2 className="about-me__title">Студент</h2>
@@ -19,12 +19,12 @@ function AboutMe(props) {
           </p>
           <div className="about-me__container-link">
             <a 
-              href="https://www.facebook.com/"
+              href="https://vk.com/sieli/"
               rel="noreferrer"
               className="about-me__link"
               target="_blank"
             >
-              Facebook
+              Vk
             </a>
             <a
               href="https://github.com/Etsugi"

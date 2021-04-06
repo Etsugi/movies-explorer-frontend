@@ -30,7 +30,7 @@ function SearchForm(props) {
             <Field 
               type="text"
               name="request" 
-              placeholder="Фильм" 
+              placeholder="Фильм"
               className={props.errors.request ? 'search-form__input form__input_error' : 'search-form__input'}
             />
             <span className='search-form__error'>{props.errors.request}</span>
