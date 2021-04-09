@@ -9,7 +9,7 @@ const RegisterFormSchema = Yup.object().shape({
     .email("Некорректный email адрес")
     .required("Email обязателен"),
   password: Yup.string()
-    .min(6, "Длина пароля не менее 6 символов")
+    .min(8, "Длина пароля не менее 8 символов")
     .max(20, "Длина пароля не более 20 символов")
     .required("Пароль обязателен")
 });
