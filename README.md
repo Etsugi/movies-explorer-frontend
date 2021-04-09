@@ -4,7 +4,7 @@
 # Описание:
 Данный проект - фронтенд часть дипломной работы Movies-explorer.
 
-[Ссылка на ЯндексОблако](https://diplom.kiprin.students.nomoredomains.icu)
+[Ссылка](https://etsugi.ru)
 
 Публичный id: 84.201.174.166
 
