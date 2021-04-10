@@ -39,7 +39,6 @@
   background-color: #202020;
   color: white;
   box-sizing: border-box;
-  overflow-y: scroll;
 }
 
 ::-webkit-scrollbar {
