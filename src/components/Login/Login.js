@@ -18,9 +18,8 @@ function Login(props) {
     <main className="login">
       <Formik
         initialValues={{
-          name: "",
-          email: "",
-          password: ""
+          email: "guest@test.com",
+          password: "00000000"
         }}
         validationSchema={LoginFormSchema}
         onSubmit={values => {

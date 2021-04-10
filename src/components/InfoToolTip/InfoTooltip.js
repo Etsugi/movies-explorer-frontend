@@ -1,11 +1,14 @@
 import React from 'react';
 
+import Popup from '../Popup/Popup';
+
 import { InfoToolTipImageAlt } from '../../constants/constants';
 
 import messageOk from '../../images/message-ok.webp'
 import messageFail from '../../images/message-fail.webp'
 
 function InfoTooltip(props) {
+  console.log(props.isOpen)
   const [image, setImage] = React.useState('');
   const [imageAlt, setImageAlt] = React.useState('');
   React.useEffect(() => {
@@ -19,17 +22,16 @@ function InfoTooltip(props) {
   }, [props.messageType])
 
   return (
-    <div className={`popup ${props.isOpen && 'popup_opened'}`}>
-      <div className="popup__container">
-        <img className="popup__icon"
-          src={image}
-          alt={imageAlt}
-        />
-        <p className="popup__message">{props.message}</p>
-        <button type="button" onClick={props.onClose} className="popup__close-button" />
-      </div>
-      <div onClick={props.onClose} className="popup__overlay"></div>
-    </div>
+    <Popup
+      isOpen={props.isOpen}
+      onClose={props.onClose}
+    >
+      <img className="info-tool-tip__icon"
+        src={image}
+        alt={imageAlt}
+      />
+      <p className="info-tool-tip__message">{props.message}</p>
+    </Popup>
   )
 }
 

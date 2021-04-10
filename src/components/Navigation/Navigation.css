@@ -2,7 +2,7 @@
 @import url("./__container-mobile/navigation__container-mobile.css");
 @import url("./__container-mobile/_open/navigation__container-mobile_open.css");
 @import url("./__button/navigation__button.css");
-@import url("./__button_active/navigation__button_active.css");
+@import url("./__button/_active/navigation__button_active.css");
 @import url("./__button/_text/navigation__button_text.css");
 @import url("./__button-mobile/navigation__button-mobile.css");
 @import url("./__button-menu/navigation__button-menu.css");

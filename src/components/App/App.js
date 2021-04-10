@@ -12,6 +12,7 @@ import Register from "../Register/Register.js";
 import Login from "../Login/Login.js";
 import Profile from "../Profile/Profile.js";
 import NotFound from "../NotFound/NotFound.js";
+import InformPopup from "../InformPopup/InformPopup.js";
 import InfoTooltip from "../InfoToolTip/InfoTooltip.js";
 
 import MainApi from '../../utils/MainApi';
@@ -33,6 +34,7 @@ function App() {
   const [initSavedMovies, setInitSavedMovies] = React.useState(false);
   const [message, setMessage] = React.useState('');
   const [messageType, setMessageType] = React.useState(false);
+  const [isInformPopupOpen, setInformPopupOpen] = React.useState(false);
   const [isInfoTooltipPopupOpen, setInfoTooltipPopupOpen] = React.useState(false);
 
   React.useEffect(() => {
@@ -56,7 +58,6 @@ function App() {
   React.useEffect(() => {
     setSavedMovies(JSON.parse(localStorage.getItem('saved-movies')));
   }, [initSavedMovies]);
-
   
   function checkAuthorize() {
     const jwt = localStorage.getItem('jwt');
@@ -75,6 +76,7 @@ function App() {
         setInitialization(true);
       })
     } else {
+      setInformPopupOpen(true); //вывод попапа о необходимости логина
       setInitialization(true);
     }
   }
@@ -189,6 +191,7 @@ function App() {
 
   function closeAllPopups() {
     setInfoTooltipPopupOpen(false);
+    setInformPopupOpen(false);
     setTimeout(() => {
       setMessage('');
       setMessageType(false);
@@ -220,7 +223,7 @@ function App() {
       {
         !initialization ? <Preloader /> :
         <>
-
+          
           <Switch>
 
             <Route exact path="/">
@@ -296,6 +299,11 @@ function App() {
       { useRouteMatch(arrayRoutesExcludeFooter) ? null : 
         <Footer />
       }
+
+      <InformPopup
+        isOpen={isInformPopupOpen} 
+        onClose={closeAllPopups}
+      />
 
       <InfoTooltip
         message={message}
