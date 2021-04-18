@@ -22,7 +22,7 @@ const portfolio = [
   },
   {
     title: 'Mesto-react',
-    description: 'Одностраничное адаптивное приложение. Использованы flexbox, grid, media, реализована возможность регистрации и авторизации, изменения данных профиля, добавления и "лайка" изображений. Работа с самописным апи.',
+    description: 'Одностраничное адаптивное приложение. Использованы flexbox, grid, media и React. Реализована возможность регистрации и авторизации, изменения данных профиля, добавления и "лайка" изображений. Работа с самописным апи на Express.js с MongoDB.',
     gitLink: 'https://github.com/Etsugi/react-mesto-api-full',
     link: 'https://kiprin.students.nomoredomains.icu',
     img: mesto,
@@ -30,7 +30,7 @@ const portfolio = [
   },
   {
     title: 'Book search',
-    description: 'Одностраничное адаптивное приложение. Использованы flexbox, grid, media, реализована возможность поиска книг по названию или автору. Работа с легаси апи.',
+    description: 'Одностраничное адаптивное приложение. Использованы flexbox, grid, media, React и Redux. Реализована возможность поиска книг по названию или автору. Работа с легаси апи от openlibrary.',
     gitLink: 'https://github.com/Etsugi/book-search',
     link: 'https://etsugi.github.io/book-search',
     img: bookSearch,
