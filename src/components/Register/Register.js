@@ -3,11 +3,18 @@ import { Link } from 'react-router-dom';
 import { Formik, Field, Form } from "formik";
 import RegisterFormSchema from "../FormValidator/RegisterForm.js";
 
+import PreloaderFull from "../PreloaderFull/PreloaderFull.js";
+
 import Logo from "../../images/logo.svg";
 
 function Register(props) {
+  const [isPreloader, setPreloader] = React.useState(false);
+  React.useEffect(() => {
+    setPreloader(false);
+  }, [props.loggedIn]);
 
   function handleSubmit(values) {
+    setPreloader(true);
     props.onRegistration({
       name: values.name,
       email: values.email,
@@ -30,6 +37,7 @@ function Register(props) {
       >
         {props => (
           <Form className="form" noValidate>
+             {isPreloader ? <PreloaderFull /> : ''}
             <Link to="/" className="form__logo-container">
               <img className="form__logo" src={`${Logo}`} alt="Лого" />
             </Link>

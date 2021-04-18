@@ -3,11 +3,18 @@ import { Link } from 'react-router-dom';
 import { Formik, Field, Form } from "formik";
 import LoginFormSchema from "../FormValidator/LoginForm.js";
 
+import PreloaderFull from "../PreloaderFull/PreloaderFull.js";
+
 import Logo from "../../images/logo.svg";
 
 function Login(props) {
+  const [isPreloader, setPreloader] = React.useState(false);
+  React.useEffect(() => {
+    setPreloader(false);
+  }, [props.loggedIn]);
 
   function handleSubmit(values) {
+    setPreloader(true);
     props.onLogin({
       email: values.email,
       password: values.password
@@ -28,6 +35,7 @@ function Login(props) {
       >
         {props => (
           <Form className="form" noValidate>
+            {isPreloader ? <PreloaderFull /> : ''}
             <Link to="/" className="form__logo-container">
               <img className="form__logo" src={`${Logo}`} alt="Лого" />
             </Link>
