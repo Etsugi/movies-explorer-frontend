@@ -1,39 +1,19 @@
 import React from 'react';
 
+import PortfolioItem from '../PortfolioItem/PortfolioItem';
+
+import { portfolio } from '../../constants/portfolio';
+
 function Portfolio() {
   return(
     <section className="portfolio">
       <h2 className="portfolio__title">Портфолио</h2>
-      <div className="portfolio__link">
-        <h3 className="portfolio__link_name">Статичный сайт</h3>
-        <a 
-          href="https://etsugi.github.io/how-to-learn/" 
-          rel="noreferrer" 
-          target="_blank" 
-          className="portfolio__link_img"
-        >
-        </a>
-      </div>
-      <div className="portfolio__link">
-        <h3 className="portfolio__link_name">Адаптивный сайт</h3>
-        <a
-          href="https://etsugi.github.io/russian-travel"
-          rel="noreferrer"
-          target="_blank"
-          className="portfolio__link_img"
-        >
-        </a>
-      </div>
-      <div className="portfolio__link">
-        <h3 className="portfolio__link_name">Одностраничное приложение</h3>
-        <a
-          href="https://kiprin.students.nomoredomains.icu"
-          rel="noreferrer" 
-          target="_blank" 
-          className="portfolio__link_img"
-        >
-        </a>
-      </div>
+      {portfolio.slice(0).map(item =>
+        <PortfolioItem 
+          item={item}
+          key={item.id}
+        />
+      )}
     </section>
   );
 }

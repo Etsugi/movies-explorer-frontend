@@ -1,0 +1,19 @@
+@keyframes rotate_button_img-open {
+  from {
+      transform: rotate(-45deg);
+  }
+  to {
+      transform: rotate(45deg);
+  }
+}
+
+.portfolio-item__button_img-rotate {
+  transform: rotate(-45deg);
+}
+
+.portfolio-item__button_img-rotate:hover {
+  animation-name: rotate_button_img-open;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}

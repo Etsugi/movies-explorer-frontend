@@ -8,7 +8,6 @@ import messageOk from '../../images/message-ok.webp'
 import messageFail from '../../images/message-fail.webp'
 
 function InfoTooltip(props) {
-  console.log(props.isOpen)
   const [image, setImage] = React.useState('');
   const [imageAlt, setImageAlt] = React.useState('');
   React.useEffect(() => {

@@ -1,0 +1,14 @@
+.portfolio-item__text-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+
+  transition: all 0.5s ease-in-out 0s;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .portfolio-item__text-container {
+    align-items: center;
+  }
+}

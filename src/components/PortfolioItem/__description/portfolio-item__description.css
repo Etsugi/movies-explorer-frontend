@@ -1,0 +1,28 @@
+.portfolio-item__description {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0px;
+  text-align: left;
+  
+  transition: all 0.5s ease-in-out 0s;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .portfolio-item__description {
+    margin: 0 auto;
+    font-size: 11px;
+    line-height: 16px;
+    text-align: center;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .portfolio-item__description {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}

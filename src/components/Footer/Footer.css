@@ -9,6 +9,7 @@
   flex-direction: column;
   justify-content: flex-end;
   height: 172px;
+  margin: auto 0px 0px 0px;
   background-color: #202020;
 
   transition: all 0.5s ease-in-out 0s;

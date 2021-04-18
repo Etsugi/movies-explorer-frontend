@@ -1,7 +1,6 @@
 import React from 'react';
 
 function Popup(props) {
-  console.log(props.isOpen)
   
   return (
     <div className={`popup ${props.isOpen && 'popup_opened'}`}>

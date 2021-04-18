@@ -1,0 +1,33 @@
+@import url("./_open/portfolio-item_open.css");
+@import url("./__button/portfolio-item__button.css");
+@import url("./__button/_title/portfolio-item__button_title.css");
+@import url("./__button/_img/portfolio-item__button_img.css");
+@import url("./__button/_img-rotate/portfolio-item__button_img-rotate.css");
+@import url("./__container/portfolio-item__container.css");
+@import url("./__link-previe/portfolio-item__link-previe.css");
+@import url("./__previe/portfolio-item__previe.css");
+@import url("./__text-container/portfolio-item__text-container.css");
+@import url("./__title/portfolio-item__title.css");
+@import url("./__description/portfolio-item__description.css");
+@import url("./__link/portfolio-item__link.css");
+
+.portfolio-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 64px;
+
+  transition: 0.2s height ease-in-out 0s;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .portfolio-item {
+    margin: 0 0 10px 0;
+    height: 29px;
+  }
+
+  .portfolio-item:last-of-type {
+    margin: 0;
+  }
+}

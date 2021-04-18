@@ -1,0 +1,39 @@
+@keyframes rotate_button_img {
+  from {
+      transform: rotate(135deg);
+  }
+  to {
+      transform: rotate(-135deg);
+  }
+}
+
+.portfolio-item__button_img {
+  height: 60px;
+  width: 29px;
+  margin: 0;
+  padding: 0;
+  background-image: url(../../../../images/portfolio_link.svg);
+  background-size: auto auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: rotate(135deg);
+  transition: transform 0.2s ease-in-out 0s !important;
+  
+  transition: all 0.5s ease-in-out 0s;
+}
+
+.portfolio-item__button_img:hover {
+  animation-name: rotate_button_img;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .portfolio-item__button_img {
+    width: 18px;
+    height: 28px;
+  }
+}
+
+
