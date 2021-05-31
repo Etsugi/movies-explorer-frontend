@@ -1,4 +1,4 @@
-.portfolio-item__previe {
+.portfolio-item__preview {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -6,8 +6,8 @@
 }
 
 @media (min-width: 320px) and (max-width: 767px) {
-  .portfolio-item__previe {
-    max-width: 292px;
+  .portfolio-item__preview {
+    max-width: 282px;
     max-height: 352px;
   }
 }

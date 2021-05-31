@@ -7,7 +7,7 @@
   line-height: 17px;
   letter-spacing: 0em;
   text-align: left;
-  text-decoration: none;
+  text-decoration: underline;
   color: white;
   transition: opacity 0.1s ease-in-out 0s !important;
   

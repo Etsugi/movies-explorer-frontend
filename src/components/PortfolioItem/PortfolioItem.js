@@ -15,12 +15,12 @@ function PortfolioItem(props) {
       </button>
       <div className="portfolio-item__container">
         <a
-          className="portfolio-item__link-previe"
+          className="portfolio-item__link-preview"
           href={props.item.link}
           rel="noreferrer"
           target="_blank"
         >
-          <img className="portfolio-item__previe" src={props.item.img} alt={`Превью сайта ${props.item.title}`}/>
+          <img className="portfolio-item__preview" src={props.item.img} alt={`Превью сайта ${props.item.title}`}/>
         </a>
         <div className="portfolio-item__text-container">
           <h3 className="portfolio-item__title">{props.item.title}</h3>
